@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ImageUpload from "@/components/ui/ImageUpload";
 import { WebsiteSetting } from "@/types/setting";
 import { useSettings } from "@/hooks/useSettings";
+import SingleImageUpload from "@/components/ui/SingleImageUpload";
 
 import LoadingButton from "@/components/ui/LoadingButton";
 
@@ -215,17 +216,15 @@ export default function AdminSettingPage() {
               Logo Website
             </label>
 
-            <input
-              value={form.logo || ""}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  logo: e.target.value,
-                })
-              }
-              placeholder="URL Logo"
-              className="w-full rounded-xl border p-3"
-            />
+            <SingleImageUpload
+            value={form.logo || ""}
+            onChange={(url) =>
+              setForm({
+                ...form,
+                logo: url,
+              })
+            }
+          />
 
           </div>
 
@@ -237,17 +236,15 @@ export default function AdminSettingPage() {
             Banner Homepage
           </label>
 
-          <input
-              value={form.heroImage || ""}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  heroImage: e.target.value,
-                })
-              }
-              placeholder="URL Banner Homepage"
-              className="w-full rounded-xl border p-3"
-            />
+          <SingleImageUpload
+            value={form.heroImage || ""}
+            onChange={(url) =>
+              setForm({
+                ...form,
+                heroImage: url,
+              })
+            }
+          />
 
         </div>
 
