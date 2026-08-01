@@ -17,8 +17,7 @@ export default function ProductCard({
   return (
     <Link href={`/produk/${product.id}`}>
 
-      <div
-        className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
 
         {/* Gambar */}
 
@@ -36,7 +35,7 @@ export default function ProductCard({
 
         {/* Content */}
 
-       <div className="space-y-2 p-3"> 
+       <div className="flex flex-1 flex-col space-y-3 p-3 md:p-4">
 
           <span className="
 inline-block rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
@@ -49,7 +48,7 @@ inline-block rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-6
 
           </h3>
 
-          <p className="text-lg font-bold text-blue-600 md:text-2xl">
+          <p className="mt-auto text-lg font-bold text-blue-600 md:text-2xl">
 
             Rp {product.price.toLocaleString("id-ID")}
 
@@ -61,9 +60,9 @@ inline-block rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-6
               e.stopPropagation();
               onAddToCart(product);
             }}
-            className="w-full rounded-lg bg-blue-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-blue-700 active:scale-95 md:px-4 md:text-sm"
+            className="w-full rounded-xl bg-blue-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-blue-700 active:scale-95 md:px-4 md:text-base"
           >
-            Masukan Keranjang
+            Add Cart
           </button>
 
         </div>
