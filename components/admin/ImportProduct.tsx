@@ -198,11 +198,8 @@ if (existingProduct) {
     ),
 
     category: item.Kategori
-      .trim()
-      .toLowerCase()
-      .replace(/\b\w/g, (char) =>
-        char.toUpperCase()
-      ),
+  .trim()
+  .toUpperCase(),
 
     description: item.Deskripsi.trim(),
 
@@ -225,11 +222,8 @@ Array.isArray(existingProduct.images)
     ),
 
     category: item.Kategori
-      .trim()
-      .toLowerCase()
-      .replace(/\b\w/g, (char) =>
-        char.toUpperCase()
-      ),
+  .trim()
+  .toUpperCase(),
 
     description: item.Deskripsi.trim(),
 
