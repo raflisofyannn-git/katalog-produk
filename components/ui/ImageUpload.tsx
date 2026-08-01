@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 interface Props {
-  value?: string;
-  onChange: (url: string) => void;
+  value: string[];
+  onChange: (urls: string[]) => void;
 }
 
 export default function ImageUpload({
@@ -13,18 +13,26 @@ export default function ImageUpload({
   onChange,
 }: Props) {
 
-  const [uploading, setUploading] =
-    useState(false);
+  const [uploading, setUploading] = useState(false);
 
 
   async function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
 
-    const file =
-      e.target.files?.[0];
+    const files = e.target.files;
 
-    if (!file) return;
+    if (!files) return;
+
+
+    // Maksimal 5 gambar
+    if (value.length + files.length > 5) {
+
+      alert("Maksimal 5 gambar produk.");
+
+      return;
+
+    }
 
 
     try {
@@ -32,57 +40,69 @@ export default function ImageUpload({
       setUploading(true);
 
 
-      const formData = new FormData();
-
-      formData.append(
-        "file",
-        file
-      );
+      const uploadedUrls: string[] = [];
 
 
-      formData.append(
-        "upload_preset",
-        process.env
-          .NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
-      );
+      for (const file of Array.from(files)) {
 
 
-      const response =
-        await fetch(
-          `https://api.cloudinary.com/v1_1/${
-            process.env
-              .NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-          }/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
+        const formData = new FormData();
+
+        formData.append(
+          "file",
+          file
         );
 
 
-      const data =
-        await response.json();
+        formData.append(
+          "upload_preset",
+          process.env
+            .NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
+        );
 
 
-      if (!data.secure_url) {
+        const response =
+          await fetch(
+            `https://api.cloudinary.com/v1_1/${
+              process.env
+                .NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+            }/image/upload`,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
 
-        throw new Error(
-          "Upload Cloudinary gagal"
+
+        const data =
+          await response.json();
+
+
+        if (!data.secure_url) {
+
+          throw new Error(
+            "Upload Cloudinary gagal"
+          );
+
+        }
+
+
+        uploadedUrls.push(
+          data.secure_url
         );
 
       }
 
 
-      onChange(
-        data.secure_url
-      );
+      onChange([
+        ...value,
+        ...uploadedUrls,
+      ]);
 
 
     } catch (error) {
 
-      console.error(
-        error
-      );
+      console.error(error);
 
       alert(
         "Upload gambar gagal"
@@ -98,6 +118,20 @@ export default function ImageUpload({
   }
 
 
+
+  function removeImage(index:number){
+
+    const newImages =
+      value.filter(
+        (_,i)=> i !== index
+      );
+
+    onChange(newImages);
+
+  }
+
+
+
   return (
 
     <div className="space-y-4">
@@ -106,13 +140,9 @@ export default function ImageUpload({
       <input
         type="file"
         accept="image/*"
+        multiple
         onChange={handleUpload}
-        className="
-          w-full
-          rounded-xl
-          border
-          p-3
-        "
+        className="w-full rounded-xl border p-3"
       />
 
 
@@ -125,20 +155,48 @@ export default function ImageUpload({
       )}
 
 
-      {value && (
 
-        <div className="relative h-48 w-48">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
 
-          <Image
-            src={value}
-            alt="Preview"
-            fill
-            className="rounded-xl object-cover"
-          />
+        {value.map((url,index)=>(
 
-        </div>
+          <div
+            key={index}
+            className="relative"
+          >
 
-      )}
+            <div className="relative h-28 w-full">
+
+              <Image
+                src={url}
+                alt={`gambar ${index+1}`}
+                fill
+                className="rounded-xl object-cover"
+              />
+
+            </div>
+
+
+            <button type="button"
+              onClick={() =>
+                removeImage(index)
+              }
+              className="mt-2 w-full rounded-lg bg-red-600 py-1 text-sm text-white"
+            >
+              Hapus
+            </button>
+
+
+          </div>
+
+        ))}
+
+      </div>
+
+
+      <p className="text-sm text-gray-500">
+        {value.length}/5 gambar
+      </p>
 
 
     </div>

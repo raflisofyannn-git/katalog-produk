@@ -327,14 +327,14 @@ export default function EditProductPage() {
 
 
           <ImageUpload
-            value={form.images[0] || ""}
-            onChange={(url) =>
-              setForm({
-                ...form,
-                images: [url],
-              })
-            }
-          />
+          value={form.images}
+          onChange={(urls) =>
+            setForm({
+              ...form,
+              images: urls,
+            })
+          }
+        />
 
         </div>
 

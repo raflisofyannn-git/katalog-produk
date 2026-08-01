@@ -178,11 +178,11 @@ export default function AddProductPage() {
           </label>
 
           <ImageUpload
-            value={form.images[0]}
-            onChange={(url) =>
+            value={form.images}
+            onChange={(urls) =>
               setForm({
                 ...form,
-                images: [url],
+                images: urls,
               })
             }
           />
