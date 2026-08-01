@@ -17,11 +17,15 @@ export default function Hero() {
           <div>
 
             <span className="rounded-full bg-white/20 px-4 py-2 text-sm text-white">
-              IMPORT PRODUK CHINA
+
+              {settings?.heroBadge ||
+                "IMPORT PRODUK CHINA"}
+
             </span>
 
             <h1 className="mt-6 text-4xl font-extrabold text-white md:text-6xl">
-              {settings?.heroTitle || "100% ORIGINAL"}
+            {settings?.heroTitle ||
+            "100% ORIGINAL"}
             </h1>
 
             <p className="mt-5 text-lg text-white/90">
@@ -30,10 +34,12 @@ export default function Hero() {
             </p>
 
                         <a
-              href="#produk"
-              className="mt-8 inline-block rounded-xl bg-white px-8 py-3 font-bold text-blue-700 transition hover:scale-105">
-              Belanja Sekarang
-            </a>
+                href="#produk"
+                className="mt-8 inline-block rounded-xl bg-white px-8 py-3 font-bold text-blue-700 transition hover:scale-105"
+              >
+                {settings?.heroButton ||
+                  "Belanja Sekarang"}
+              </a>
 
           </div>
 

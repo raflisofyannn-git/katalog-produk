@@ -166,6 +166,28 @@ export default function AdminSettingPage() {
 
         </div>
 
+          {/* Hero Badge */}
+
+          <div>
+
+          <label className="mb-2 block font-semibold">
+            Label Banner
+          </label>
+
+          <input
+          value={form.heroBadge || ""}
+          onChange={(e)=>
+          setForm({
+            ...form,
+            heroBadge:e.target.value,
+          })
+          }
+          placeholder="IMPORT PRODUK CHINA"
+          className="w-full rounded-xl border p-3"
+          />
+
+          </div>
+
         {/* Hero Title */}
 
         <div>
@@ -208,6 +230,28 @@ export default function AdminSettingPage() {
           />
 
         </div>
+
+            {/* Hero Button */}
+
+            <div>
+
+            <label className="mb-2 block font-semibold">
+              Tombol Banner
+            </label>
+
+            <input
+            value={form.heroButton || ""}
+            onChange={(e)=>
+            setForm({
+              ...form,
+              heroButton:e.target.value,
+            })
+            }
+            placeholder="Belanja Sekarang"
+            className="w-full rounded-xl border p-3"
+            />
+
+            </div>
                {/* Logo */}
 
           <div>

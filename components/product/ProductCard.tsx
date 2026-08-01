@@ -61,9 +61,9 @@ inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-6
               e.stopPropagation();
               onAddToCart(product);
             }}
-            className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
+            className="w-full rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
           >
-            + Tambah ke Keranjang
+            Masukan Keranjang
           </button>
 
         </div>

@@ -163,7 +163,7 @@ setCustomerPhone("");
       {/* Background */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 bg-black/40 transition ${
+        className={`fixed inset-0 z-[60] bg-black/40 transition ${
           open
             ? "visible opacity-100"
             : "invisible opacity-0"
@@ -174,7 +174,7 @@ setCustomerPhone("");
       <div
 
         className={`
-        fixed right-0 top-0
+       fixed right-0 top-0 z-[70]
         flex h-full
         w-full
         sm:w-[450px]

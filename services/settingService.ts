@@ -23,25 +23,26 @@ export async function getSetting(): Promise<WebsiteSetting> {
   }
 
   const defaultSetting: WebsiteSetting = {
-    storeName: "IMPORT STORE",
-    logo: "",
+  storeName: "IMPORT STORE",
+  logo: "",
+  adminPhone: "",
+  email: "",
+  address: "",
 
-    adminPhone: "6281234567890",
-    email: "",
-    address: "",
+  heroBadge: "IMPORT PRODUK CHINA",
+  heroTitle: "100% ORIGINAL",
+  heroSubtitle: "Semua produk menggunakan sistem PREORDER. Barang langsung dikirim dari supplier terpercaya di China.",
+  heroButton: "Belanja Sekarang",
+  heroImage: "",
 
-    instagram: "",
-    facebook: "",
-    tiktok: "",
+  instagram: "",
+  facebook: "",
+  tiktok: "",
 
-    heroTitle: "Selamat Datang",
-    heroSubtitle: "Temukan Produk Terbaik Kami",
-    heroImage: "",
+  footerText: "",
 
-    footerText: "© Import Store",
-
-    updatedAt: Date.now(),
-  };
+  updatedAt: Date.now(),
+};
 
   await set(settingRef, defaultSetting);
 

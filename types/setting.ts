@@ -12,8 +12,10 @@ export interface WebsiteSetting {
   facebook: string;
   tiktok: string;
 
+  heroBadge: string;
   heroTitle: string;
   heroSubtitle: string;
+  heroButton: string;
   heroImage: string;
 
   footerText: string;
