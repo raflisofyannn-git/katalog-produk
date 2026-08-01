@@ -17,7 +17,7 @@ export default function ProductGrid({
   // Loading Skeleton
   if (loading) {
     return (
-      <div className="mx-auto mt-8 grid max-w-7xl gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto mt-8 grid max-w-7xl grid-cols-3 gap-3 px-3 md:gap-5 lg:grid-cols-5">
         {Array.from({ length: 8 }).map((_, index) => (
           <ProductSkeleton key={index} />
         ))}
@@ -28,8 +28,8 @@ export default function ProductGrid({
   // Produk kosong
   if (products.length === 0) {
     return (
-      <section id="produk"className="mx-auto max-w-7xl px-6 py-20">
-        <h2 className="mb-8 text-3xl font-bold">
+      <section id="produk" className="mx-auto max-w-7xl px-3 py-10 md:px-6 md:py-20">
+        <h2 className="mb-6 text-2xl font-bold md:mb-8 md:text-3xl">
           Produk
         </h2>
 
@@ -48,13 +48,13 @@ export default function ProductGrid({
 
   // Produk ada
   return (
-    <section id="produk"className="mx-auto max-w-7xl px-6 py-20">
+    <section id="produk" className="mx-auto max-w-7xl px-3 py-10 md:px-6 md:py-20">
 
-      <h2 className="mb-8 text-3xl font-bold">
+      <h2 className="mb-6 text-2xl font-bold md:mb-8 md:text-3xl">
         Produk
       </h2>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-3 gap-3 px-1 md:gap-5 lg:grid-cols-5">
         {products.map((product) => (
           <ProductCard
             key={product.id}

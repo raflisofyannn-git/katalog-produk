@@ -18,11 +18,11 @@ export default function ProductCard({
     <Link href={`/produk/${product.id}`}>
 
       <div
-        className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+        className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 
         {/* Gambar */}
 
-        <div className="relative aspect-square overflow-hidden">
+       <div className="relative aspect-square overflow-hidden">
 
           <Image
             src={product.images[0]}
@@ -36,20 +36,20 @@ export default function ProductCard({
 
         {/* Content */}
 
-        <div className="space-y-3 p-4">
+       <div className="space-y-2 p-3"> 
 
           <span className="
-inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+inline-block rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
             {product.category}
           </span>
 
-          <h3 className="line-clamp-2 min-h-[56px] text-lg font-semibold">
+          <h3 className="line-clamp-2 min-h-[48px] text-sm font-semibold md:text-lg">
 
             {product.name}
 
           </h3>
 
-          <p className="text-2xl font-bold text-blue-600">
+          <p className="text-lg font-bold text-blue-600 md:text-2xl">
 
             Rp {product.price.toLocaleString("id-ID")}
 
@@ -61,7 +61,7 @@ inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-6
               e.stopPropagation();
               onAddToCart(product);
             }}
-            className="w-full rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
+            className="w-full rounded-lg bg-blue-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-blue-700 active:scale-95 md:px-4 md:text-sm"
           >
             Masukan Keranjang
           </button>
