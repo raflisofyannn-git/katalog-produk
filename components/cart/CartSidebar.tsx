@@ -1,6 +1,7 @@
 "use client";
 
 import { ADMIN_PHONE } from "@/constants/config";
+import CheckoutSuccessModal from "@/components/cart/CheckoutSuccessModal";
 import LoadingButton from "@/components/ui/LoadingButton";
 import { useState } from "react";
 import {
@@ -36,6 +37,9 @@ export default function CartSidebar({
 }: Props) {
 
   const [loadingCheckout, setLoadingCheckout] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [orderNumber, setOrderNumber] = useState("");
+  const [whatsappUrl, setWhatsappUrl] = useState("");
   const {
   cart,
   increaseQty,
@@ -105,14 +109,18 @@ export default function CartSidebar({
   orderNumber
 );
 
-window.open(
-  `https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(message)}`,
-  "_blank"
-);
+const url =
+  `https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(message)}`;
 
-    clearCart();
+setOrderNumber(orderNumber);
 
-    onClose();
+setWhatsappUrl(url);
+
+clearCart();
+
+onClose();
+
+setShowSuccess(true);
 
   } catch (err) {
 
@@ -251,6 +259,13 @@ window.open(
 
         </div>
       </div>
+      <CheckoutSuccessModal
+      open={showSuccess}
+      orderNumber={orderNumber}
+      whatsappUrl={whatsappUrl}
+      onClose={() => setShowSuccess(false)}
+    />
     </>
   );
+  
 }

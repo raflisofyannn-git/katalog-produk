@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   onOpenCart: () => void;
@@ -15,6 +15,13 @@ export default function Navbar({
   const { totalItems } = useCart();
 
   const [openMenu, setOpenMenu] = useState(false);
+
+  // Mencegah Hydration Error
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
@@ -48,15 +55,13 @@ export default function Navbar({
         <div className="flex items-center gap-4">
 
           {/* Cart */}
-
           <button
             onClick={onOpenCart}
             className="relative rounded-full p-2 hover:bg-gray-100"
           >
-
             <ShoppingCart size={24} />
 
-            {totalItems > 0 && (
+            {mounted && totalItems > 0 && (
               <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                 {totalItems}
               </span>
@@ -65,7 +70,6 @@ export default function Navbar({
           </button>
 
           {/* Mobile */}
-
           <button
             onClick={() => setOpenMenu(!openMenu)}
             className="rounded-full p-2 hover:bg-gray-100 md:hidden"
@@ -78,7 +82,6 @@ export default function Navbar({
       </div>
 
       {/* Mobile Menu */}
-
       {openMenu && (
 
         <div className="border-t bg-white md:hidden">

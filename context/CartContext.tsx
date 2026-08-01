@@ -7,8 +7,8 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { Product } from "@/types/product";
 
+import { Product } from "@/types/product";
 import { CartItem } from "@/types/cart";
 
 interface CartContextType {
@@ -31,19 +31,26 @@ export function CartProvider({
 }: {
   children: ReactNode;
 }) {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-  if (typeof window === "undefined") return [];
+  // Selalu mulai dari cart kosong
+  const [cart, setCart] = useState<CartItem[]>([]);
 
-  const savedCart = localStorage.getItem("cart");
+  // Setelah client mount baru baca localStorage
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
 
-  
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch {
+        setCart([]);
+      }
+    }
+  }, []);
 
-  return savedCart ? JSON.parse(savedCart) : [];
-});
-
-useEffect(() => {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}, [cart]);
+  // Simpan setiap ada perubahan
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   function addToCart(product: Product) {
     setCart((prev) => {
@@ -61,64 +68,63 @@ useEffect(() => {
     });
   }
 
-    function increaseQty(id: string) {
-  setCart((prev) =>
-    prev.map((item) =>
-      item.id === id
-        ? { ...item, qty: item.qty + 1 }
-        : item
-    )
-  );
-}
-
-function decreaseQty(id: string) {
-  setCart((prev) =>
-    prev
-      .map((item) =>
+  function increaseQty(id: string) {
+    setCart((prev) =>
+      prev.map((item) =>
         item.id === id
-          ? { ...item, qty: item.qty - 1 }
+          ? { ...item, qty: item.qty + 1 }
           : item
       )
-      .filter((item) => item.qty > 0)
+    );
+  }
+
+  function decreaseQty(id: string) {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id
+            ? { ...item, qty: item.qty - 1 }
+            : item
+        )
+        .filter((item) => item.qty > 0)
+    );
+  }
+
+  function removeItem(id: string) {
+    setCart((prev) =>
+      prev.filter((item) => item.id !== id)
+    );
+  }
+
+  function clearCart() {
+    setCart([]);
+  }
+
+  const totalItems = cart.reduce(
+    (total, item) => total + item.qty,
+    0
   );
-}
 
-function removeItem(id: string) {
-  setCart((prev) =>
-    prev.filter((item) => item.id !== id)
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.qty,
+    0
   );
-}
-
-function clearCart() {
-  setCart([]);
-}
-
-const totalItems = cart.reduce(
-  (total, item) => total + item.qty,
-  0
-);
-
-const totalPrice = cart.reduce(
-  (total, item) => total + item.price * item.qty,
-  0
-);
 
   return (
     <CartContext.Provider
-  value={{
-  cart,
-  addToCart,
-  increaseQty,
-  decreaseQty,
-  removeItem,
-  clearCart,
-
-  totalItems,
-  totalPrice,
-}}
->
-  {children}
-</CartContext.Provider>
+      value={{
+        cart,
+        addToCart,
+        increaseQty,
+        decreaseQty,
+        removeItem,
+        clearCart,
+        totalItems,
+        totalPrice,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
   );
 }
 
@@ -126,7 +132,9 @@ export function useCart() {
   const context = useContext(CartContext);
 
   if (!context) {
-    throw new Error("useCart harus digunakan di dalam CartProvider");
+    throw new Error(
+      "useCart harus digunakan di dalam CartProvider"
+    );
   }
 
   return context;
