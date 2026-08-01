@@ -136,15 +136,7 @@ export default function EditProductPage() {
 
 
 
-    if (!form.images[0]) {
-
-      toast.error(
-        "Silakan upload gambar produk."
-      );
-
-      return;
-
-    }
+    if (!form.images[0]) { toast.error("Silakan upload gambar produk."); return; }
 
 
 

@@ -215,14 +215,16 @@ export default function AdminSettingPage() {
               Logo Website
             </label>
 
-            <ImageUpload
+            <input
               value={form.logo || ""}
-              onChange={(url) =>
+              onChange={(e) =>
                 setForm({
                   ...form,
-                  logo: url,
+                  logo: e.target.value,
                 })
               }
+              placeholder="URL Logo"
+              className="w-full rounded-xl border p-3"
             />
 
           </div>
@@ -235,15 +237,17 @@ export default function AdminSettingPage() {
             Banner Homepage
           </label>
 
-          <ImageUpload
-            value={form.heroImage || ""}
-            onChange={(url) =>
-              setForm({
-                ...form,
-                heroImage: url,
-              })
-            }
-          />
+          <input
+              value={form.heroImage || ""}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  heroImage: e.target.value,
+                })
+              }
+              placeholder="URL Banner Homepage"
+              className="w-full rounded-xl border p-3"
+            />
 
         </div>
 
