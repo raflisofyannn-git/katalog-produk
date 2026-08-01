@@ -2,6 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import AuthGuard from "@/components/AuthGuard";
 
 import {
   LayoutDashboard,
@@ -20,6 +25,7 @@ export default function AdminLayout({
 }: Props) {
 
   const pathname = usePathname();
+  const router = useRouter();
 
   const menus = [
     {
@@ -43,9 +49,71 @@ export default function AdminLayout({
       icon: Settings,
     },
   ];
+
+ const pageTitle = (() => {
+  if (pathname === "/admin")
+    return {
+      title: "Dashboard",
+      subtitle: "Ringkasan aktivitas website",
+    };
+
+  if (pathname === "/admin/products")
+    return {
+      title: "Manajemen Produk",
+      subtitle: "Tambah, ubah dan hapus produk",
+    };
+
+  if (pathname === "/admin/products/add")
+    return {
+      title: "Tambah Produk",
+      subtitle: "Tambahkan produk baru",
+    };
+
+  if (pathname.startsWith("/admin/products/"))
+    return {
+      title: "Edit Produk",
+      subtitle: "Perbarui informasi produk",
+    };
+
+  if (pathname === "/admin/orders")
+    return {
+      title: "Manajemen Pesanan",
+      subtitle: "Kelola seluruh pesanan customer",
+    };
+
+  if (pathname.startsWith("/admin/orders/"))
+    return {
+      title: "Detail Pesanan",
+      subtitle: "Informasi lengkap pesanan",
+    };
+
+  if (pathname === "/admin/settings")
+    return {
+      title: "Pengaturan Website",
+      subtitle: "Konfigurasi website",
+    };
+
+  return {
+    title: "Admin",
+    subtitle: "",
+  };
+})();
+
+async function handleLogout() {
+  try {
+    await signOut(auth);
+
+    router.replace("/admin/login");
+  } catch (error) {
+    console.error(error);
+    toast.error("Logout gagal.");
+  }
+}
     return (
 
-    <div className="flex min-h-screen bg-slate-100">
+<AuthGuard>
+
+<div className="flex min-h-screen bg-slate-100">
 
       {/* Sidebar */}
 
@@ -110,18 +178,19 @@ export default function AdminLayout({
           <div>
 
             <h2 className="text-2xl font-bold">
-              Dashboard Admin
+            {pageTitle.title}
             </h2>
 
             <p className="text-sm text-gray-500">
-              Kelola seluruh data website
+            {pageTitle.subtitle}
             </p>
 
           </div>
 
           <button
+            onClick={handleLogout}
             className="flex items-center gap-2 rounded-xl border px-5 py-3 font-semibold transition hover:bg-slate-100"
-          >
+            >
 
             <LogOut size={20} />
 
@@ -141,6 +210,8 @@ export default function AdminLayout({
 
     </div>
 
-  );
+</AuthGuard>
+
+);
 
 }

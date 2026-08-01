@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 import { useProducts } from "@/hooks/useProducts";
 import { deleteProduct } from "@/services/productService";
@@ -29,11 +30,11 @@ export default function AdminProductsPage() {
 
     try {
       await deleteProduct(product.id);
-      alert("Produk berhasil dihapus.");
+      toast.success("Produk berhasil dihapus.");
       window.location.reload();
     } catch (err) {
       console.error(err);
-      alert("Gagal menghapus produk.");
+      toast.error("Gagal menghapus produk.");
     }
   }
 
