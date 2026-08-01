@@ -21,11 +21,10 @@ Subtotal : ${formatCurrency(item.price * item.qty)}`
     )
     .join("\n\n");
 
-  return `Halo Admin,
+  return `Halo Kak,
 
-Saya ingin melakukan PREORDER.
-
-━━━━━━━━━━━━━━━━━━
+Aku mau ikut Pre Order dong.
+Berikut Rincian pesanan aku ya.
 
 Nomor PO
 ${orderNumber}
@@ -48,5 +47,9 @@ TOTAL
 
 ${formatCurrency(total)}
 
-Terima kasih.`;
+DP 50% : ${formatCurrency(total / 2)}
+Transfer hanya ke rekening berikut:
+SEABANK — 901895222583 a.n. Azhari Oktavina
+⚠️ Jika sudah melakukan payment harap untuk mengirim bukti Screenshootnya 
+`;
 }
