@@ -252,6 +252,88 @@ export default function AdminSettingPage() {
             />
 
             </div>
+
+            {/* Hero Feature */}
+
+            <div>
+
+            <label className="mb-2 block font-semibold">
+              Judul Feature Banner
+            </label>
+
+            <input
+            value={form.heroFeatureTitle || ""}
+            onChange={(e)=>
+            setForm({
+              ...form,
+              heroFeatureTitle:e.target.value,
+            })
+            }
+            className="w-full rounded-xl border p-3"
+            />
+
+            </div>
+
+
+            <div>
+
+            <label className="mb-2 block font-semibold">
+              Feature 1
+            </label>
+
+            <input
+            value={form.heroFeature1 || ""}
+            onChange={(e)=>
+            setForm({
+              ...form,
+              heroFeature1:e.target.value,
+            })
+            }
+            className="w-full rounded-xl border p-3"
+            />
+
+            </div>
+
+
+            <div>
+
+            <label className="mb-2 block font-semibold">
+              Feature 2
+            </label>
+
+            <input
+            value={form.heroFeature2 || ""}
+            onChange={(e)=>
+            setForm({
+              ...form,
+              heroFeature2:e.target.value,
+            })
+            }
+            className="w-full rounded-xl border p-3"
+            />
+
+            </div>
+
+
+            <div>
+
+            <label className="mb-2 block font-semibold">
+              Feature 3
+            </label>
+
+            <input
+            value={form.heroFeature3 || ""}
+            onChange={(e)=>
+            setForm({
+              ...form,
+              heroFeature3:e.target.value,
+            })
+            }
+            className="w-full rounded-xl border p-3"
+            />
+
+            </div>
+
                {/* Logo */}
 
           <div>

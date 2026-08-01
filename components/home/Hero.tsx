@@ -63,20 +63,20 @@ export default function Hero() {
 
     <div className="rounded-3xl bg-white/10 p-10 backdrop-blur">
 
-      <h2 className="text-3xl font-bold text-white">
-        PREORDER
+     <h2 className="text-3xl font-bold text-white">
+        {settings?.heroFeatureTitle || "PREORDER"}
       </h2>
 
       <p className="mt-4 text-white">
-        ✔ Original
+        ✔ {settings?.heroFeature1 || "Original"}
       </p>
 
       <p className="text-white">
-        ✔ Harga Kompetitif
+        ✔ {settings?.heroFeature2 || "Harga Kompetitif"}
       </p>
 
       <p className="text-white">
-        ✔ Aman
+        ✔ {settings?.heroFeature3 || "Aman"}
       </p>
 
     </div>

@@ -11,6 +11,7 @@ import { WebsiteSetting } from "@/types/setting";
 
 const settingRef = ref(db, "settings");
 
+
 // =======================================
 // Ambil Setting Website
 // =======================================
@@ -23,6 +24,12 @@ export async function getSetting(): Promise<WebsiteSetting> {
   }
 
   const defaultSetting: WebsiteSetting = {
+
+    heroFeatureTitle: "PREORDER",
+    heroFeature1: "Original",
+    heroFeature2: "Harga Kompetitif",
+    heroFeature3: "Aman",
+    
   storeName: "IMPORT STORE",
   logo: "",
   adminPhone: "",
