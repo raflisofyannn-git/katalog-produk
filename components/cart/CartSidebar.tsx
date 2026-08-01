@@ -24,18 +24,15 @@ import { toast } from "sonner";
 interface Props {
   open: boolean;
   onClose: () => void;
-
-  customerName: string;
-  customerPhone: string;
 }
 
 export default function CartSidebar({
   open,
   onClose,
-  customerName,
-  customerPhone,
 }: Props) {
 
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
   const [loadingCheckout, setLoadingCheckout] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
@@ -116,11 +113,9 @@ setOrderNumber(orderNumber);
 
 setWhatsappUrl(url);
 
-clearCart();
-
-onClose();
-
 setShowSuccess(true);
+setCustomerName("");
+setCustomerPhone("");
 
   } catch (err) {
 
@@ -157,7 +152,7 @@ setShowSuccess(true);
         fixed right-0 top-0
         flex h-full
         w-full
-        sm:w-[420px]
+        sm:w-[450px]
         flex-col
         bg-white
         shadow-2xl
@@ -166,19 +161,62 @@ setShowSuccess(true);
         ${open ? "translate-x-0" : "translate-x-full"}
         `}
 >
-        <div className="flex items-center justify-between border-b p-5">
+        <div className="flex items-center justify-between border-b px-6 py-5">
 
-          <h2 className="text-xl font-bold">
-            Keranjang ({totalItems})
-          </h2>
+  <div>
+    <h2 className="text-2xl font-bold">
+      🛒 Keranjang
+    </h2>
 
-          <button onClick={onClose}>
-            <X />
-          </button>
+    <p className="text-sm text-gray-500">
+      {totalItems} Produk
+    </p>
+  </div>
 
-        </div>
+  <button
+    onClick={onClose}
+    className="rounded-full p-2 hover:bg-gray-100"
+  >
+    <X size={22} />
+  </button>
 
-        <div className="flex-1 overflow-y-auto p-5">
+</div>
+
+<div className="flex-1 overflow-y-auto p-5 pb-40">
+
+<div className="mb-6 rounded-xl border p-4">
+
+  <div className="mb-4">
+    <label className="mb-2 block text-sm font-medium">
+      Nama Customer
+    </label>
+
+    <input
+      value={customerName}
+      onChange={(e) => setCustomerName(e.target.value)}
+      placeholder="Masukkan nama customer"
+      className="w-full rounded-xl border px-4 py-3"
+    />
+  </div>
+
+  <div>
+    <label className="mb-2 block text-sm font-medium">
+      No WhatsApp
+    </label>
+
+    <input
+        type="tel"
+        inputMode="numeric"
+        value={customerPhone}
+        onChange={(e) => setCustomerPhone(e.target.value)}
+        placeholder="08xxxxxxxxxx"
+        className="w-full rounded-xl border px-4 py-3"
+      />
+  </div>
+
+</div>
+
+
 
           {cart.length === 0 ? (
             <p>Keranjang masih kosong.</p>
@@ -186,7 +224,7 @@ setShowSuccess(true);
             cart.map((item) => (
                 <div
                     key={item.id}
-                    className="mb-5 rounded-xl border p-4"
+                    className="mb-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
                 >
                     <h3 className="font-semibold">
                     {item.name}
@@ -238,9 +276,9 @@ setShowSuccess(true);
 
         </div>
 
-        <div className="border-t p-5">
+<div className="sticky bottom-0 border-t bg-white p-5 shadow-lg">
 
-          <div className="mb-4 flex justify-between">
+          <div className="mb-5 flex items-center justify-between text-lg font-semibold">
 
             <span>Total</span>
 
@@ -260,11 +298,15 @@ setShowSuccess(true);
         </div>
       </div>
       <CheckoutSuccessModal
-      open={showSuccess}
-      orderNumber={orderNumber}
-      whatsappUrl={whatsappUrl}
-      onClose={() => setShowSuccess(false)}
-    />
+  open={showSuccess}
+  orderNumber={orderNumber}
+  whatsappUrl={whatsappUrl}
+  onClose={() => {
+    setShowSuccess(false);
+    clearCart();
+    onClose();
+  }}
+/>
     </>
   );
   

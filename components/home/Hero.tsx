@@ -1,6 +1,12 @@
 "use client";
 
+import Image from "next/image";
+import { useSettings } from "@/hooks/useSettings";
+
 export default function Hero() {
+
+  const { settings } = useSettings();
+
   return (
     <section className="mx-auto mt-8 max-w-7xl px-4">
 
@@ -15,16 +21,13 @@ export default function Hero() {
             </span>
 
             <h1 className="mt-6 text-4xl font-extrabold text-white md:text-6xl">
-              100% ORIGINAL
+              {settings?.heroTitle || "100% ORIGINAL"}
             </h1>
 
             <p className="mt-5 text-lg text-white/90">
-              Semua produk menggunakan sistem
-              <span className="font-bold">
-                {" "}PREORDER
-              </span>.
-              Barang langsung dikirim dari supplier terpercaya di China.
-            </p>
+  {settings?.heroSubtitle ||
+    "Semua produk menggunakan sistem PREORDER. Barang langsung dikirim dari supplier terpercaya di China."}
+</p>
 
             <button
               className="mt-8 rounded-xl bg-white px-8 py-3 font-bold text-blue-700 transition hover:scale-105"
@@ -34,29 +37,47 @@ export default function Hero() {
 
           </div>
 
-          <div className="hidden justify-center md:flex">
+         <div className="hidden justify-center md:flex">
 
-            <div className="rounded-3xl bg-white/10 p-10 backdrop-blur">
+  {settings?.heroImage ? (
 
-              <h2 className="text-3xl font-bold text-white">
-                PREORDER
-              </h2>
+    <div className="relative h-[380px] w-full max-w-md overflow-hidden rounded-3xl">
 
-              <p className="mt-4 text-white">
-                ✔ Original
-              </p>
+      <Image
+        src={settings.heroImage}
+        alt="Hero Banner"
+        fill
+        className="object-cover"
+        priority
+      />
 
-              <p className="text-white">
-                ✔ Harga Kompetitif
-              </p>
+    </div>
 
-              <p className="text-white">
-                ✔ Aman
-              </p>
+  ) : (
 
-            </div>
+    <div className="rounded-3xl bg-white/10 p-10 backdrop-blur">
 
-          </div>
+      <h2 className="text-3xl font-bold text-white">
+        PREORDER
+      </h2>
+
+      <p className="mt-4 text-white">
+        ✔ Original
+      </p>
+
+      <p className="text-white">
+        ✔ Harga Kompetitif
+      </p>
+
+      <p className="text-white">
+        ✔ Aman
+      </p>
+
+    </div>
+
+  )}
+
+</div>
 
         </div>
 

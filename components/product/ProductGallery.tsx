@@ -35,7 +35,17 @@ export default function ProductGallery({
 
       {/* Gambar utama */}
       <div
-        className="relative aspect-square overflow-hidden rounded-2xl border cursor-zoom-in"
+        className="
+        relative
+        aspect-square
+        overflow-hidden
+        rounded-3xl
+        border
+        border-gray-200
+        bg-slate-50
+        shadow-sm
+        cursor-zoom-in
+        "
         onClick={() => setViewerOpen(true)}
       >
 
@@ -44,13 +54,24 @@ export default function ProductGallery({
           alt="Produk"
           fill
           sizes="(max-width:768px) 100vw, 600px"
-          className="object-cover transition duration-300 hover:scale-105"
+          className="
+          object-cover
+          transition-transform
+          duration-500
+          hover:scale-110
+          "
         />
 
       </div>
 
       {/* Thumbnail */}
-      <div className="flex gap-3 overflow-x-auto pb-2">
+      <div className="
+      flex
+      gap-3
+      overflow-x-auto
+      pb-2
+      scrollbar-hide
+      ">
 
         {images.map((img, index) => (
 
@@ -60,13 +81,25 @@ export default function ProductGallery({
               setSelected(img);
               setCurrentIndex(index);
             }}
-            className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition
+            className={`
+            relative
+            h-20
+            w-20
+            shrink-0
+            overflow-hidden
+            rounded-2xl
+            border-2
+            bg-white
+            shadow-sm
+            transition-all
+            duration-300
 
             ${
-              selected === img
-                ? "border-blue-600"
-                : "border-slate-200"
-            }`}
+            selected === img
+            ? "border-blue-600 scale-105"
+            : "border-gray-200 hover:border-blue-300"
+            }
+            `}
           >
 
             <Image

@@ -16,10 +16,7 @@ export default function CheckoutSuccessModal({
   if (!open) return null;
 
   function openWhatsapp() {
-  console.log("WhatsApp URL:", whatsappUrl);
-  alert(whatsappUrl);
-
-  window.location.href = whatsappUrl;
+  window.location.assign(whatsappUrl);
 }
 
   async function copyPO() {

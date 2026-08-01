@@ -61,10 +61,14 @@ export async function getOrders() {
   const data = snapshot.val();
 
 
-return Object.entries(data).map(([id, value]) => ({
-  id,
-  ...(value as Omit<Order, "id">),
-}));
+return Object.entries(data)
+  .map(([id, value]) => ({
+    id,
+    ...(value as Omit<Order, "id">),
+  }))
+  .sort(
+    (a, b) => b.createdAt - a.createdAt
+  );
 }
 
 // =========================

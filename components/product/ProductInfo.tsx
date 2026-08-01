@@ -33,37 +33,76 @@ export default function ProductInfo({
 
   return (
 
-    <div className="space-y-6">
+    <div className="space-y-8">
 
-      <h1 className="text-4xl font-bold">
+      {/* Kategori */}
+
+      <span
+        className="
+        inline-flex
+        rounded-full
+        bg-blue-50
+        px-4
+        py-2
+        text-sm
+        font-semibold
+        text-blue-600
+      "
+      >
+        {product.category}
+      </span>
+
+      {/* Nama */}
+
+      <h1 className="text-4xl font-bold leading-tight">
+
         {product.name}
+
       </h1>
 
-      <p className="text-3xl font-bold text-blue-600">
-        Rp {product.price.toLocaleString("id-ID")}
-      </p>
-
-      <div className="inline-block rounded-full bg-gray-100 px-4 py-2">
-        {product.category}
-      </div>
+      {/* Harga */}
 
       <div>
 
-        <h2 className="mb-2 font-semibold">
-          Deskripsi Produk
-        </h2>
+        <p className="text-sm text-gray-500">
+          Harga
+        </p>
 
-        <p className="leading-7 text-gray-600">
-          {product.description}
+        <p className="mt-1 text-5xl font-extrabold text-blue-600">
+
+          Rp {product.price.toLocaleString("id-ID")}
+
         </p>
 
       </div>
+
+      {/* Deskripsi */}
+
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+
+        <h2 className="mb-4 text-lg font-bold">
+
+          Deskripsi Produk
+
+        </h2>
+
+        <p className="leading-8 text-gray-600">
+
+          {product.description}
+
+        </p>
+
+      </div>
+
+      {/* Tombol */}
 
       <LoadingButton
         loading={loading}
         onClick={handleAdd}
       >
+
         Tambah ke Keranjang
+
       </LoadingButton>
 
     </div>
