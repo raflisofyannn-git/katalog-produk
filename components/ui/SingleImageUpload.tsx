@@ -102,12 +102,7 @@ export default function SingleImageUpload({
         <img
           src={value}
           alt="preview"
-          className="
-          h-40
-          w-40
-          rounded-xl
-          object-cover
-          "
+          className="h-40 w-40 rounded-xl object-cover"
         />
       )}
 

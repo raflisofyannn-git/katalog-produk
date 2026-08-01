@@ -215,7 +215,6 @@ export default function AdminSettingPage() {
             <label className="mb-3 block font-semibold">
               Logo Website
             </label>
-
             <SingleImageUpload
             value={form.logo || ""}
             onChange={(url) =>
