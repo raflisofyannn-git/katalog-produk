@@ -87,9 +87,15 @@ export async function updateProduct(
 ) {
 
   await update(
-    ref(db, `products/${id}`),
-    product
-  );
+  ref(db, `products/${id}`),
+  {
+    ...product,
+    images:
+      Array.isArray(product.images)
+        ? product.images
+        : [],
+  }
+);
 
 }
 

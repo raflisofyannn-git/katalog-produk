@@ -207,7 +207,10 @@ if (existingProduct) {
     description: item.Deskripsi.trim(),
 
     // Pertahankan gambar yang sudah ada
-    images: existingProduct.images,
+    images:
+Array.isArray(existingProduct.images)
+  ? existingProduct.images
+  : [],
 
   });
 
