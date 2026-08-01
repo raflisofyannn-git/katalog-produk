@@ -25,6 +25,7 @@ export default function AdminLayout({
 }: Props) {
 
   const pathname = usePathname();
+    const isLoginPage = pathname === "/admin/login";
   const router = useRouter();
 
   const menus = [
@@ -108,6 +109,10 @@ async function handleLogout() {
     console.error(error);
     toast.error("Logout gagal.");
   }
+}
+
+if (isLoginPage) {
+  return <>{children}</>;
 }
     return (
 

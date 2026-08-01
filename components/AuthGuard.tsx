@@ -18,16 +18,14 @@ export default function AuthGuard({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (user) => {
-        if (!user) {
-          router.replace("/admin/login");
-        } else {
-          setLoading(false);
-        }
-      }
-    );
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    setLoading(false);
+    router.replace("/admin/login");
+  } else {
+    setLoading(false);
+  }
+});
 
     return () => unsubscribe();
   }, [router]);
