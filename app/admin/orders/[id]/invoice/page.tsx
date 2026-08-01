@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 import {
   ArrowLeft,
@@ -104,6 +105,18 @@ export default function InvoicePage() {
 
           <div>
 
+            {settings?.logo && (
+
+              <Image
+                src={settings.logo}
+                alt={settings.storeName}
+                width={70}
+                height={70}
+                className="mb-4 rounded-xl object-cover"
+              />
+
+            )}
+
            <h1 className="text-4xl font-bold">
             {settings?.storeName || "IMPORT STORE"}
             </h1>
@@ -126,19 +139,25 @@ export default function InvoicePage() {
 
           <div className="text-right">
 
-            <h2 className="text-3xl font-bold">
+          <h2 className="text-4xl font-extrabold tracking-wide">
+            INVOICE
+          </h2>
 
-              INVOICE
 
-            </h2>
+          <div className="mt-3 rounded-xl bg-slate-100 px-5 py-3">
 
-            <p className="mt-3">
+            <p className="text-sm text-gray-500">
+              Nomor Invoice
+            </p>
 
+            <p className="font-bold text-blue-600">
               {order.orderNumber}
-
             </p>
 
           </div>
+
+
+        </div>
 
         </div>
 
@@ -189,15 +208,12 @@ export default function InvoicePage() {
             </p>
 
             <p>
+  Status :
+</p>
 
-              Status :
-
-              {" "}
-
-              {order.status}
-
-            </p>
-
+<span className="mt-2 inline-block rounded-full bg-blue-100 px-4 py-1text-sm font-semibold text-blue-700">
+  {order.status}
+</span>
           </div>
 
         </div>
@@ -210,10 +226,8 @@ export default function InvoicePage() {
 
             <tr className="border-b bg-slate-100">
 
-              <th className="p-4 text-left">
-
+             <th className="p-4 text-left">
                 Produk
-
               </th>
 
               <th className="p-4 text-center">
@@ -248,9 +262,30 @@ export default function InvoicePage() {
 
                 <td className="p-4">
 
-                  {item.name}
+          <div className="flex items-center gap-3">
 
-                </td>
+
+            {item.images?.[0] && (
+
+              <Image
+                src={item.images[0]}
+                alt={item.name}
+                width={50}
+                height={50}
+                className="rounded-lg object-cover"
+              />
+
+            )}
+
+
+            <span>
+              {item.name}
+            </span>
+
+
+          </div>
+
+        </td>
 
                 <td className="p-4 text-center">
 
@@ -339,20 +374,30 @@ export default function InvoicePage() {
 
         @media print {
 
-          body {
-            background: white;
-          }
+  body {
+    background: white !important;
+  }
 
-          @page {
-            size: A4;
-            margin: 15mm;
-          }
 
-          .print\\:hidden {
-            display: none !important;
-          }
+  .print\\:hidden {
+    display: none !important;
+  }
 
-        }
+
+  .shadow {
+    box-shadow: none !important;
+  }
+
+
+  @page {
+
+    size: A4;
+
+    margin: 12mm;
+
+  }
+
+}
 
       `}</style>
 

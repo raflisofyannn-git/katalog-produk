@@ -1,5 +1,6 @@
 "use client";
 
+//import { Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -81,9 +82,41 @@ export default function Footer() {
             Alamat
           </p>
 
-          <p>
-            {settings?.address || "-"}
-          </p>
+          <div className="mt-6 flex gap-3">
+
+  {settings?.instagram && (
+    <a
+      href={settings.instagram}
+      target="_blank"
+      className="rounded-lg border border-slate-600 px-3 py-2 text-sm hover:bg-slate-800"
+    >
+      Instagram
+    </a>
+  )}
+
+
+  {settings?.facebook && (
+    <a
+      href={settings.facebook}
+      target="_blank"
+      className="rounded-lg border border-slate-600 px-3 py-2 text-sm hover:bg-slate-800"
+    >
+      Facebook
+    </a>
+  )}
+
+
+  {settings?.tiktok && (
+    <a
+      href={settings.tiktok}
+      target="_blank"
+      className="rounded-lg border border-slate-600 px-3 py-2 text-sm hover:bg-slate-800"
+    >
+      TikTok
+    </a>
+  )}
+
+</div>
 
         </div>
 

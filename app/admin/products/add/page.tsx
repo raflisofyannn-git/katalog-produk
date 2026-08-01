@@ -9,6 +9,7 @@ import type { ProductData } from "@/services/productService";
 import LoadingButton from "@/components/ui/LoadingButton";
 
 import { toast } from "sonner";
+import ImageUpload from "@/components/ui/ImageUpload";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -24,22 +25,50 @@ export default function AddProductPage() {
   });
 
   async function handleSave() {
-    try {
-      setSaving(true);
 
-      await addProduct(form);
-
-      toast.success("Produk berhasil ditambahkan.");
-
-      router.push("/admin/products");
-    } catch (err) {
-      console.error(err);
-
-      toast.error("Gagal menambahkan produk.");
-    } finally {
-      setSaving(false);
-    }
+  if (!form.name.trim()) {
+    toast.error("Nama produk wajib diisi.");
+    return;
   }
+
+  if (!form.category.trim()) {
+    toast.error("Kategori wajib diisi.");
+    return;
+  }
+
+  if (form.price <= 0) {
+    toast.error("Harga tidak valid.");
+    return;
+  }
+
+  if (!form.images[0]) {
+    toast.error("Silakan upload gambar produk.");
+    return;
+  }
+
+  try {
+
+    setSaving(true);
+
+    await addProduct(form);
+
+    toast.success("Produk berhasil ditambahkan.");
+
+    router.push("/admin/products");
+
+  } catch (err) {
+
+    console.error(err);
+
+    toast.error("Gagal menambahkan produk.");
+
+  } finally {
+
+    setSaving(false);
+
+  }
+
+}
 
   return (
     <main className="mx-auto max-w-4xl p-8">
@@ -144,34 +173,33 @@ export default function AddProductPage() {
 
         <div>
 
-          <label className="mb-2 block font-semibold">
-            URL Gambar
+          <label className="mb-3 block font-semibold">
+            Foto Produk
           </label>
 
-          <input
+          <ImageUpload
             value={form.images[0]}
-            onChange={(e) =>
+            onChange={(url) =>
               setForm({
                 ...form,
-                images: [e.target.value],
+                images: [url],
               })
             }
-            placeholder="https://..."
-            className="w-full rounded-xl border p-3"
           />
 
         </div>
 
         <div className="pt-4">
 
-          <LoadingButton
-            loading={saving}
-            onClick={handleSave}
-          >
-            Simpan Produk
-          </LoadingButton>
+        <LoadingButton
+          loading={saving}
+          onClick={handleSave}
+          className="w-full"
+        >
+          Simpan Produk
+        </LoadingButton>
 
-        </div>
+      </div>
 
       </div>
 

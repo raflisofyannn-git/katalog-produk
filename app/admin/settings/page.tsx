@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import ImageUpload from "@/components/ui/ImageUpload";
 import { WebsiteSetting } from "@/types/setting";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -37,7 +37,20 @@ export default function AdminSettingPage() {
   }
 
   async function handleSave() {
+
   if (!form) return;
+
+
+  if (!form.storeName.trim()) {
+
+    toast.error(
+      "Nama toko wajib diisi."
+    );
+
+    return;
+
+  }
+
 
   try {
     setSaving(true);
@@ -194,46 +207,42 @@ export default function AdminSettingPage() {
           />
 
         </div>
-                {/* Logo */}
+               {/* Logo */}
 
-        <div>
+          <div>
 
-          <label className="mb-2 block font-semibold">
-            Logo (URL)
-          </label>
+            <label className="mb-3 block font-semibold">
+              Logo Website
+            </label>
 
-          <input
-            value={form.logo}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                logo: e.target.value,
-              })
-            }
-            placeholder="https://..."
-            className="w-full rounded-xl border p-3"
-          />
+            <ImageUpload
+              value={form.logo || ""}
+              onChange={(url) =>
+                setForm({
+                  ...form,
+                  logo: url,
+                })
+              }
+            />
 
-        </div>
+          </div>
 
         {/* Banner */}
 
         <div>
 
-          <label className="mb-2 block font-semibold">
-            Banner Homepage (URL)
+          <label className="mb-3 block font-semibold">
+            Banner Homepage
           </label>
 
-          <input
-            value={form.heroImage}
-            onChange={(e) =>
+          <ImageUpload
+            value={form.heroImage || ""}
+            onChange={(url) =>
               setForm({
                 ...form,
-                heroImage: e.target.value,
+                heroImage: url,
               })
             }
-            placeholder="https://..."
-            className="w-full rounded-xl border p-3"
           />
 
         </div>
@@ -325,14 +334,15 @@ export default function AdminSettingPage() {
 
         <div className="pt-4">
 
-          <LoadingButton
-            loading={saving}
-            onClick={handleSave}
-          >
-            Simpan Setting
-          </LoadingButton>
+        <LoadingButton
+          loading={saving}
+          onClick={handleSave}
+          className="w-full"
+        >
+          Simpan Setting
+        </LoadingButton>
 
-        </div>
+       </div>
 
       </div>
 

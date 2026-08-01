@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
-
+import Image from "next/image";
 import { useProducts } from "@/hooks/useProducts";
 import { deleteProduct } from "@/services/productService";
 import { formatCurrency } from "@/utils/formatCurrency";
@@ -22,29 +22,27 @@ export default function AdminProductsPage() {
   }, [products, search]);
 
   async function handleDelete(product: Product) {
-    const confirmDelete = window.confirm(
-      `Hapus produk "${product.name}"?`
-    );
+  const confirmDelete = window.confirm(
+    `Hapus produk "${product.name}"?`
+  );
 
-    if (!confirmDelete) return;
+  if (!confirmDelete) return;
 
-    try {
-      await deleteProduct(product.id);
-      toast.success("Produk berhasil dihapus.");
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-      toast.error("Gagal menghapus produk.");
-    }
+  try {
+    await deleteProduct(product.id);
+
+    toast.success("Produk berhasil dihapus.");
+
+    window.location.reload();
+
+  } catch (err) {
+
+    console.error(err);
+
+    toast.error("Gagal menghapus produk.");
+
   }
-
-  if (loading) {
-    return (
-      <main className="p-8">
-        Memuat Produk...
-      </main>
-    );
-  }
+}
 
   return (
     <main className="mx-auto max-w-7xl p-8">
@@ -77,7 +75,12 @@ export default function AdminProductsPage() {
         <table className="w-full">
           <thead className="bg-slate-100">
             <tr>
-              <th className="p-4 text-left">Produk</th>
+              <th className="p-4 text-left">
+                Gambar
+                </th>
+                <th className="text-left">
+                Produk
+                </th>
               <th className="text-left">Kategori</th>
               <th className="text-left">Harga</th>
               <th className="text-center">Aksi</th>
@@ -88,7 +91,7 @@ export default function AdminProductsPage() {
             {filteredProducts.length === 0 ? (
               <tr>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="p-8 text-center text-gray-500"
                 >
                   Belum ada produk.
@@ -101,10 +104,28 @@ export default function AdminProductsPage() {
                   className="border-t hover:bg-slate-50"
                 >
                   <td className="p-4">
-                    <div className="font-semibold">
-                      {product.name}
-                    </div>
-                  </td>
+
+                <Image
+                  src={
+                    product.images?.[0]
+                      ? product.images[0]
+                      : "/no-image.png"
+                  }
+                  alt={product.name}
+                  width={70}
+                  height={70}
+                  className="h-16 w-16 rounded-lg object-cover"
+                />
+
+                </td>
+
+                <td>
+
+                <div className="font-semibold">
+                    {product.name}
+                </div>
+
+                </td>
 
                   <td>{product.category}</td>
 

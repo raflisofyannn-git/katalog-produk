@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import {
   ArrowLeft,
@@ -320,12 +321,23 @@ export default function OrderDetailPage() {
 
           {order.items.map((item) => (
 
-            <div
-              key={item.id}
-              className="flex items-center justify-between rounded-xl border border-gray-200 bg-slate-50 p-5"
-            >
+           <div
+            key={item.id}
+            className="flex items-center justify-between gap-5 rounded-xl border border-gray-200 bg-slate-50 p-5"
+          >
 
               <div>
+                {item.images?.[0] && (
+
+                  <Image
+                    src={item.images[0]}
+                    alt={item.name}
+                    width={80}
+                    height={80}
+                    className="rounded-xl object-cover"
+                  />
+
+                )}
 
                 <h3 className="text-lg font-semibold">
 
@@ -405,20 +417,7 @@ export default function OrderDetailPage() {
           href={`https://wa.me/${order.customerPhone.replace(/\D/g, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="
-            flex
-            items-center
-            justify-center
-            gap-3
-            rounded-2xl
-            bg-green-600
-            py-4
-            font-semibold
-            text-white
-            transition
-            hover:bg-green-700
-          "
-        >
+          className="flex items-center justify-center gap-3 rounded-2xl bg-green-600 py-4 font-semibold text-white transition hover:bg-green-700">
 
           <MessageCircle size={22} />
 
@@ -428,19 +427,7 @@ export default function OrderDetailPage() {
 
         <Link
   href={`/admin/orders/${order.id}/invoice`}
-  className="
-    flex
-    items-center
-    justify-center
-    gap-3
-    rounded-2xl
-    border
-    py-4
-    font-semibold
-    transition
-    hover:bg-slate-100
-  "
->
+  className="flex items-center justify-center gap-3 rounded-2xl border py-4 font-semibold transition hover:bg-slate-100">
 
   <Printer size={22} />
 

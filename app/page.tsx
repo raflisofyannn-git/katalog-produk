@@ -13,6 +13,7 @@ import { useCart } from "@/context/CartContext";
 import CartSidebar from "@/components/cart/CartSidebar";
 
 import CategoryFilter from "@/components/home/CategoryFilter";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -71,6 +72,7 @@ export default function Home() {
       open={openCart}
       onClose={() => setOpenCart(false)}
       />
+      <Footer />
     </>
   );
 }

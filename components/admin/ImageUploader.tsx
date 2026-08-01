@@ -57,21 +57,7 @@ export default function ImageUploader({
           e.preventDefault();
           handleFiles(e.dataTransfer.files);
         }}
-        className="
-          flex
-          cursor-pointer
-          flex-col
-          items-center
-          justify-center
-          rounded-xl
-          border-2
-          border-dashed
-          border-slate-300
-          p-10
-          text-center
-          hover:border-blue-500
-        "
-      >
+        className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 p-10 text-center hover:border-blue-500">
         <Upload className="mb-3 h-10 w-10" />
 
         <p className="font-medium">
@@ -141,16 +127,7 @@ export default function ImageUploader({
               <button
                 type="button"
                 onClick={() => removeImage(index)}
-                className="
-                  absolute
-                  right-2
-                  top-2
-                  rounded-full
-                  bg-red-500
-                  p-1
-                  text-white
-                "
-              >
+                className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white">
                 <X size={14} />
               </button>
 

@@ -67,15 +67,29 @@ export default function Navbar({
         {/* Desktop Menu */}
         <nav className="hidden items-center gap-8 md:flex">
 
-          <a href="#" className="hover:text-blue-600">
+          <a
+            href="/"
+            className="hover:text-blue-600"
+          >
             Home
           </a>
 
-          <a href="#produk" className="hover:text-blue-600">
+          <a
+            href="#produk"
+            className="hover:text-blue-600"
+          >
             Produk
           </a>
 
-          <a href="#" className="hover:text-blue-600">
+          <a
+            href={
+              settings?.adminPhone
+                ? `https://wa.me/${settings.adminPhone}`
+                : "#"
+            }
+            target="_blank"
+            className="hover:text-blue-600"
+          >
             Kontak
           </a>
 
@@ -130,7 +144,12 @@ export default function Navbar({
           </a>
 
           <a
-            href="#"
+            href={
+              settings?.adminPhone
+                ? `https://wa.me/${settings.adminPhone}`
+                : "#"
+            }
+            target="_blank"
             className="block px-5 py-4 hover:bg-gray-100"
           >
             Kontak

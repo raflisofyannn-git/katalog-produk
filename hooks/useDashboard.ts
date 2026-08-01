@@ -7,73 +7,169 @@ import { getProducts } from "@/services/productService";
 
 
 export function useDashboard() {
-  const [loading, setLoading] = useState(true);
 
-  const [totalProducts, setTotalProducts] = useState(0);
-  const [totalOrders, setTotalOrders] = useState(0);
-  const [totalCustomers, setTotalCustomers] = useState(0);
-  const [totalRevenue, setTotalRevenue] = useState(0);
+  const [loading, setLoading] =
+    useState(true);
 
-  const [pendingOrders, setPendingOrders] = useState(0);
-  const [completedOrders, setCompletedOrders] = useState(0);
 
-  const [orderedOrders, setOrderedOrders] = useState(0);
-  const [arrivedOrders, setArrivedOrders] = useState(0);
+  const [totalProducts, setTotalProducts] =
+    useState(0);
+
+  const [totalOrders, setTotalOrders] =
+    useState(0);
+
+  const [totalCustomers, setTotalCustomers] =
+    useState(0);
+
+  const [totalRevenue, setTotalRevenue] =
+    useState(0);
+
+
+  const [pendingOrders, setPendingOrders] =
+    useState(0);
+
+  const [orderedOrders, setOrderedOrders] =
+    useState(0);
+
+  const [arrivedOrders, setArrivedOrders] =
+    useState(0);
+
+  const [completedOrders, setCompletedOrders] =
+    useState(0);
+
+
 
   useEffect(() => {
-    async function load() {
+
+    async function loadDashboard() {
+
       try {
-        const [products, orders] = await Promise.all([
+
+        const [
+          products,
+          orders,
+        ] = await Promise.all([
           getProducts(),
           getOrders(),
         ]);
 
-        setTotalProducts(products.length);
-        setTotalOrders(orders.length);
+
+
+        setTotalProducts(
+          products.length
+        );
+
+
+        setTotalOrders(
+          orders.length
+        );
+
+
 
         setPendingOrders(
-          orders.filter((o) => o.status === "Pending").length
+          orders.filter(
+            (order) =>
+              order.status === "Pending"
+          ).length
         );
 
-        setCompletedOrders(
-          orders.filter((o) => o.status === "Completed").length
-        );
+
 
         setOrderedOrders(
-          orders.filter((o) => o.status === "Ordered").length
+          orders.filter(
+            (order) =>
+              order.status === "Ordered"
+          ).length
         );
+
+
 
         setArrivedOrders(
-          orders.filter((o) => o.status === "Arrived").length
+          orders.filter(
+            (order) =>
+              order.status === "Arrived"
+          ).length
         );
+
+
+
+        setCompletedOrders(
+          orders.filter(
+            (order) =>
+              order.status === "Completed"
+          ).length
+        );
+
+
 
         setTotalRevenue(
-          orders.reduce((sum, order) => sum + order.total, 0)
+          orders.reduce(
+            (total, order) =>
+              total + order.total,
+            0
+          )
         );
 
-        const customers = new Set(
-          orders.map((order) => order.customerPhone)
+
+
+        const customerList =
+          new Set(
+            orders.map(
+              (order) =>
+                order.customerPhone
+            )
+          );
+
+
+        setTotalCustomers(
+          customerList.size
         );
 
-        setTotalCustomers(customers.size);
+
+      } catch (error) {
+
+        console.error(
+          "Dashboard error:",
+          error
+        );
+
       } finally {
+
         setLoading(false);
+
       }
+
     }
 
-    load();
+
+    loadDashboard();
+
+
   }, []);
 
-  return {
-  loading,
-  totalProducts,
-  totalOrders,
-  totalCustomers,
-  totalRevenue,
 
-  pendingOrders,
-  orderedOrders,
-  arrivedOrders,
-  completedOrders,
-};
+
+  return {
+
+    loading,
+
+    totalProducts,
+
+    totalOrders,
+
+    totalCustomers,
+
+    totalRevenue,
+
+
+    pendingOrders,
+
+    orderedOrders,
+
+    arrivedOrders,
+
+    completedOrders,
+
+  };
+
 }

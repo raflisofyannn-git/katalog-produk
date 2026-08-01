@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { login } from "@/lib/auth";
 import LoadingButton from "@/components/ui/LoadingButton";
 import { toast } from "sonner";
+//import AuthGuard from "@/components/AuthGuard";
 
 export default function LoginPage() {
   const router = useRouter();

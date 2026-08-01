@@ -25,15 +25,15 @@ export default function Hero() {
             </h1>
 
             <p className="mt-5 text-lg text-white/90">
-  {settings?.heroSubtitle ||
-    "Semua produk menggunakan sistem PREORDER. Barang langsung dikirim dari supplier terpercaya di China."}
-</p>
+              {settings?.heroSubtitle ||
+                "Semua produk menggunakan sistem PREORDER. Barang langsung dikirim dari supplier terpercaya di China."}
+            </p>
 
-            <button
-              className="mt-8 rounded-xl bg-white px-8 py-3 font-bold text-blue-700 transition hover:scale-105"
-            >
+                        <a
+              href="#produk"
+              className="mt-8 inline-block rounded-xl bg-white px-8 py-3 font-bold text-blue-700 transition hover:scale-105">
               Belanja Sekarang
-            </button>
+            </a>
 
           </div>
 

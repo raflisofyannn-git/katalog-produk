@@ -4,6 +4,8 @@ import { ADMIN_PHONE } from "@/constants/config";
 import CheckoutSuccessModal from "@/components/cart/CheckoutSuccessModal";
 import LoadingButton from "@/components/ui/LoadingButton";
 import { useState } from "react";
+import { useSettings } from "@/hooks/useSettings";
+import Image from "next/image";
 import {
   addOrder,
   generateOrderNumber,
@@ -46,6 +48,7 @@ export default function CartSidebar({
   totalItems,
   totalPrice,
 } = useCart();
+  const { settings } = useSettings();
 
     async function handleCheckout() {
 
@@ -55,9 +58,27 @@ export default function CartSidebar({
   }
 
   if (!customerPhone.trim()) {
-    toast.warning("Masukkan nomor WhatsApp.");
-    return;
-  }
+
+  toast.warning(
+    "Masukkan nomor WhatsApp."
+  );
+
+  return;
+
+}
+
+
+if (
+  customerPhone.length < 10
+) {
+
+  toast.warning(
+    "Nomor WhatsApp tidak valid."
+  );
+
+  return;
+
+}
 
   if (cart.length === 0) {
     toast.warning("Keranjang masih kosong.");
@@ -106,8 +127,12 @@ export default function CartSidebar({
   orderNumber
 );
 
+const adminPhone =
+  settings?.adminPhone || ADMIN_PHONE;
+
+
 const url =
-  `https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(message)}`;
+  `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`;
 
 setOrderNumber(orderNumber);
 
@@ -226,14 +251,33 @@ setCustomerPhone("");
                     key={item.id}
                     className="mb-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
                 >
-                    <h3 className="font-semibold">
+                  <div className="mb-3 flex gap-3">
+
+                <Image
+                  src={
+                    item.images?.[0] ||
+                    "/no-image.png"
+                  }
+                  alt={item.name}
+                  width={70}
+                  height={70}
+                  className="h-16 w-16 rounded-lg object-cover"
+                />
+
+                <div>
+
+                  <h3 className="font-semibold">
                     {item.name}
-                    </h3>
+                  </h3>
 
-                    <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500">
                     Rp {item.price.toLocaleString("id-ID")}
-                    </p>
+                  </p>
 
+                </div>
+
+              </div>
+        
                     <div className="mt-3 flex items-center justify-between">
 
                     <div className="flex items-center gap-2">
@@ -288,12 +332,16 @@ setCustomerPhone("");
 
           </div>
 
+          <div className="w-full">
+
           <LoadingButton
             loading={loadingCheckout}
             onClick={handleCheckout}
           >
             Checkout WhatsApp
           </LoadingButton>
+
+        </div>
 
         </div>
       </div>

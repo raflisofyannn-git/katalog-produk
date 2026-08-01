@@ -1,6 +1,14 @@
 "use client";
 
-import { Package, ShoppingCart, Clock3, CheckCircle2, Truck, Wallet } from "lucide-react";
+import {
+  Package,
+  ShoppingCart,
+  Clock3,
+  CheckCircle2,
+  Truck,
+  Wallet,
+  Users,
+} from "lucide-react";
 
 import { useDashboard } from "@/hooks/useDashboard";
 import { formatCurrency } from "@/utils/formatCurrency";
@@ -9,14 +17,16 @@ import BestProducts from "@/components/admin/dashboard/BestProducts";
 export default function AdminDashboard() {
 
   const {
-    loading,
-    totalOrders,
-    pendingOrders,
-    orderedOrders,
-    arrivedOrders,
-    completedOrders,
-    totalRevenue,
-  } = useDashboard();
+  loading,
+  totalProducts,
+  totalCustomers,
+  totalOrders,
+  pendingOrders,
+  orderedOrders,
+  arrivedOrders,
+  completedOrders,
+  totalRevenue,
+} = useDashboard();
 
   if (loading) {
     return (
@@ -58,6 +68,57 @@ export default function AdminDashboard() {
               <p className="text-sm text-gray-500">
                 Total Pesanan
               </p>
+
+              <div className="rounded-2xl border bg-white p-6 shadow-sm">
+
+  <div className="flex items-center justify-between">
+
+    <div>
+
+      <p className="text-sm text-gray-500">
+        Total Produk
+      </p>
+
+      <h2 className="mt-3 text-4xl font-bold">
+        {totalProducts}
+      </h2>
+
+    </div>
+
+    <Package
+      size={42}
+      className="text-blue-600"
+    />
+
+  </div>
+
+</div>
+
+
+<div className="rounded-2xl border bg-white p-6 shadow-sm">
+
+  <div className="flex items-center justify-between">
+
+    <div>
+
+      <p className="text-sm text-gray-500">
+        Total Customer
+      </p>
+
+      <h2 className="mt-3 text-4xl font-bold">
+        {totalCustomers}
+      </h2>
+
+    </div>
+
+    <Users
+      size={42}
+      className="text-green-600"
+    />
+
+  </div>
+
+</div>
 
               <h2 className="mt-3 text-4xl font-bold">
                 {totalOrders}

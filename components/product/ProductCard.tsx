@@ -18,20 +18,7 @@ export default function ProductCard({
     <Link href={`/produk/${product.id}`}>
 
       <div
-        className="
-          group
-          overflow-hidden
-          rounded-2xl
-          border
-          border-gray-200
-          bg-white
-          shadow-sm
-          transition-all
-          duration-300
-          hover:-translate-y-2
-          hover:shadow-xl
-        "
-      >
+        className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
 
         {/* Gambar */}
 
@@ -42,12 +29,7 @@ export default function ProductCard({
             alt={product.name}
             fill
             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 25vw"
-            className="
-              object-cover
-              transition-transform
-              duration-500
-              group-hover:scale-110
-            "
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
 
         </div>
@@ -56,18 +38,8 @@ export default function ProductCard({
 
         <div className="space-y-3 p-4">
 
-          <span
-            className="
-              inline-block
-              rounded-full
-              bg-blue-50
-              px-3
-              py-1
-              text-xs
-              font-semibold
-              text-blue-600
-            "
-          >
+          <span className="
+inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
             {product.category}
           </span>
 
@@ -89,17 +61,7 @@ export default function ProductCard({
               e.stopPropagation();
               onAddToCart(product);
             }}
-            className="
-              w-full
-              rounded-xl
-              bg-blue-600
-              py-3
-              font-semibold
-              text-white
-              transition
-              hover:bg-blue-700
-              active:scale-95
-            "
+            className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
           >
             + Tambah ke Keranjang
           </button>

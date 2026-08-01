@@ -3,15 +3,18 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
+import ImageUpload from "@/components/ui/ImageUpload";
+import LoadingButton from "@/components/ui/LoadingButton";
+
 import {
   getProductById,
   updateProduct,
   ProductData,
 } from "@/services/productService";
 
-import LoadingButton from "@/components/ui/LoadingButton";
-
 import { toast } from "sonner";
+
+
 export default function EditProductPage() {
 
   const params = useParams();
@@ -19,32 +22,58 @@ export default function EditProductPage() {
 
   const id = params.id as string;
 
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [saving, setSaving] =
+    useState(false);
+
 
   const [form, setForm] =
     useState<ProductData | null>(null);
 
+
+
   useEffect(() => {
 
-    async function load() {
+    async function loadProduct() {
 
       try {
 
         const product =
           await getProductById(id);
 
+
         if (product) {
 
           setForm({
+
             name: product.name,
-            description: product.description,
-            category: product.category,
-            price: product.price,
-            images: product.images,
+
+            description:
+              product.description,
+
+            category:
+              product.category,
+
+            price:
+              product.price,
+
+            images:
+              product.images,
+
           });
 
         }
+
+      } catch (error) {
+
+        console.error(error);
+
+        toast.error(
+          "Gagal mengambil data produk."
+        );
 
       } finally {
 
@@ -54,69 +83,158 @@ export default function EditProductPage() {
 
     }
 
-    load();
+
+    if (id) {
+      loadProduct();
+    }
+
 
   }, [id]);
 
+
+
   async function handleSave() {
+
 
     if (!form) return;
 
-    try {
 
-      setSaving(true);
 
-      await updateProduct(id, form);
+    if (!form.name.trim()) {
 
-      toast.success("Produk berhasil diperbarui.");
+      toast.error(
+        "Nama produk wajib diisi."
+      );
 
-      router.push("/admin/products");
-
-    } catch (err) {
-
-      console.error(err);
-
-      toast.error("Gagal memperbarui produk.");
-
-    } finally {
-
-      setSaving(false);
+      return;
 
     }
 
+
+
+    if (!form.category.trim()) {
+
+      toast.error(
+        "Kategori wajib diisi."
+      );
+
+      return;
+
+    }
+
+
+
+    if (form.price <= 0) {
+
+      toast.error(
+        "Harga tidak valid."
+      );
+
+      return;
+
+    }
+
+
+
+    if (!form.images[0]) {
+
+      toast.error(
+        "Silakan upload gambar produk."
+      );
+
+      return;
+
+    }
+
+
+
+    try {
+
+
+      setSaving(true);
+
+
+
+      await updateProduct(
+        id,
+        form
+      );
+
+
+
+      toast.success(
+        "Produk berhasil diperbarui."
+      );
+
+
+
+      router.push(
+        "/admin/products"
+      );
+
+
+    } catch (error) {
+
+
+      console.error(error);
+
+
+      toast.error(
+        "Gagal memperbarui produk."
+      );
+
+
+    } finally {
+
+
+      setSaving(false);
+
+
+    }
+
+
   }
+
+
 
   if (loading || !form) {
 
     return (
+
       <main className="p-8">
+
         Memuat Produk...
+
       </main>
+
     );
 
   }
-
-  return (
+    return (
 
     <main className="mx-auto max-w-4xl p-8">
+
 
       <h1 className="mb-2 text-4xl font-bold">
         Edit Produk
       </h1>
 
+
       <p className="mb-8 text-gray-500">
         Perbarui informasi produk.
       </p>
 
-            <div className="space-y-6 rounded-2xl border bg-white p-8 shadow">
 
-        {/* Nama Produk */}
+
+      <div className="space-y-6 rounded-2xl border bg-white p-8 shadow">
+
 
         <div>
 
           <label className="mb-2 block font-semibold">
             Nama Produk
           </label>
+
 
           <input
             value={form.name}
@@ -131,13 +249,14 @@ export default function EditProductPage() {
 
         </div>
 
-        {/* Harga */}
+
 
         <div>
 
           <label className="mb-2 block font-semibold">
             Harga
           </label>
+
 
           <input
             type="number"
@@ -153,13 +272,14 @@ export default function EditProductPage() {
 
         </div>
 
-        {/* Kategori */}
+
 
         <div>
 
           <label className="mb-2 block font-semibold">
             Kategori
           </label>
+
 
           <input
             value={form.category}
@@ -174,13 +294,14 @@ export default function EditProductPage() {
 
         </div>
 
-        {/* Deskripsi */}
+
 
         <div>
 
           <label className="mb-2 block font-semibold">
             Deskripsi
           </label>
+
 
           <textarea
             rows={5}
@@ -196,48 +317,57 @@ export default function EditProductPage() {
 
         </div>
 
-        {/* URL Gambar */}
+
 
         <div>
 
-          <label className="mb-2 block font-semibold">
-            URL Gambar
+          <label className="mb-3 block font-semibold">
+            Foto Produk
           </label>
 
-          <input
-            value={form.images[0]}
-            onChange={(e) =>
+
+          <ImageUpload
+            value={form.images[0] || ""}
+            onChange={(url) =>
               setForm({
                 ...form,
-                images: [e.target.value],
+                images: [url],
               })
             }
-            className="w-full rounded-xl border p-3"
           />
 
         </div>
 
+
+
         <div className="flex gap-4 pt-4">
+
 
           <LoadingButton
             loading={saving}
             onClick={handleSave}
+            className="flex-1"
           >
             Simpan Perubahan
           </LoadingButton>
 
+
+
           <button
+            type="button"
             onClick={() =>
               router.push("/admin/products")
             }
-            className="rounded-xl border px-6 py-3 font-semibold hover:bg-gray-100"
-          >
+            className="rounded-xl border px-8 py-3 font-semibold transition hover:bg-gray-100">
             Batal
           </button>
 
+
         </div>
 
+
       </div>
+
 
     </main>
 
