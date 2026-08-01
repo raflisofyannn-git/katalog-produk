@@ -2,6 +2,7 @@ import { getProductById } from "@/services/productService";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 import { notFound } from "next/navigation";
+import CloseButton from "@/components/product/CloseButton";
 
 interface Props {
   params: Promise<{
@@ -25,19 +26,21 @@ export default async function ProductPage({
 
     <main className="mx-auto max-w-7xl p-6">
 
-      <div className="grid gap-10 lg:grid-cols-2">
+  <CloseButton />
 
-        <ProductGallery
-          images={product.images}
-        />
+  <div className="grid gap-10 lg:grid-cols-2">
 
-        <ProductInfo
-          product={product}
-        />
+    <ProductGallery
+      images={product.images}
+    />
 
-      </div>
+    <ProductInfo
+      product={product}
+    />
 
-    </main>
+  </div>
+
+</main>
 
   );
 

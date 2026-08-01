@@ -24,12 +24,14 @@ export default function ProductCard({
        <div className="relative aspect-square overflow-hidden">
 
           <Image
-            src={product.images[0]}
-            alt={product.name}
-            fill
-            sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          src={
+            product.images?.[0] || "/placeholder.png"
+          }
+          alt={product.name}
+          fill
+          sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 25vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+        />
 
         </div>
 

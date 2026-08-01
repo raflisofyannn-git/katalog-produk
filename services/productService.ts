@@ -11,6 +11,7 @@ import {
 
 import { Product } from "@/types/product";
 
+
 export type ProductData = Omit<Product, "id">;
 
 // =========================
@@ -41,6 +42,21 @@ export async function getProducts(): Promise<Product[]> {
     id,
     ...(value as ProductData),
   }));
+
+}
+
+// =========================
+// Cari Produk Berdasarkan Nama
+// =========================
+export async function findProductByName(name: string) {
+
+  const products = await getProducts();
+
+  return products.find(
+    (product) =>
+      product.name.trim().toLowerCase() ===
+      name.trim().toLowerCase()
+  ) || null;
 
 }
 

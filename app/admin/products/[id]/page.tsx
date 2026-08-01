@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { X } from "lucide-react";
+
 
 import ImageUpload from "@/components/ui/ImageUpload";
 import LoadingButton from "@/components/ui/LoadingButton";
@@ -18,10 +20,9 @@ import { toast } from "sonner";
 export default function EditProductPage() {
 
   const params = useParams();
-  const router = useRouter();
-
+  
   const id = params.id as string;
-
+  const router = useRouter();
 
   const [loading, setLoading] =
     useState(true);
