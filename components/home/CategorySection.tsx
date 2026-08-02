@@ -1,27 +1,12 @@
 "use client";
 
-import {
-  Waves,
-  Fish,
-  Backpack,
-  Dumbbell,
-  Shirt,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface Props {
   categories: string[];
   selected: string;
   onSelect: (category: string) => void;
 }
-
-const icons = [
-  Waves,
-  Fish,
-  Backpack,
-  Shirt,
-  Dumbbell,
-];
 
 export default function CategorySection({
   categories,
@@ -33,151 +18,155 @@ export default function CategorySection({
 
       {/* Header */}
 
-    <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-
-      <div>
-
-        <p className="text-sm font-bold uppercase tracking-[0.35em] text-blue-600">
-          CATEGORY
-        </p>
-
-        <h2 className="mt-2 text-4xl font-black tracking-tight text-slate-900">
-          Kategori Produk
-        </h2>
-
-        <p className="mt-2 text-slate-500">
-          Pilih kategori sesuai kebutuhan Anda.
-        </p>
-
-      </div>
-
-      <button
-        onClick={() => onSelect("")}
+      <div
         className="
-          inline-flex
-          items-center
-          gap-2
-          rounded-full
-          border
-          border-blue-200
-          bg-blue-50
-          px-6
-          py-3
-          font-semibold
-          text-blue-600
-          transition-all
-          duration-300
-          hover:bg-blue-600
-          hover:text-white
-          hover:shadow-lg
+        mb-8
+        flex
+        flex-col
+        gap-5
+
+        lg:flex-row
+        lg:items-end
+        lg:justify-between
         "
       >
-        Semua Kategori
 
-        <ArrowRight size={18} />
+        <div>
 
-      </button>
+          <p
+            className="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.35em]
+            text-blue-600
+            "
+          >
+            CATEGORY
+          </p>
 
-    </div>
+          <h2
+            className="
+            mt-2
+            text-3xl
+            font-black
+            tracking-tight
+            text-slate-900
 
-      {/* Card */}
+            lg:text-5xl
+            "
+          >
+            Explore Categories
+          </h2>
 
-      <div className="flex flex-wrap justify-center gap-3">
+          <p
+            className="
+            mt-3
+            text-slate-500
+            "
+          >
+            Temukan perlengkapan diving sesuai kebutuhan Anda.
+          </p>
 
-        {categories.map((category, index) => {
+        </div>
 
-          const Icon = icons[index % icons.length];
+        <button
+          onClick={() => onSelect("")}
+          className="
+          hidden
 
-          const active = selected === category;
+          lg:flex
 
-          return (
+          items-center
+          gap-2
 
-            <button
-              key={category}
-              onClick={() => onSelect(category)}
-              className={`
-                group
-                relative
-                h-[120px]
-                w-[120px]
-                overflow-hidden
-                rounded-[30px]
-                border
-                transition-all
-                duration-500
-                shadow-sm
+          rounded-full
 
-                ${
-                    active
-                      ? "border-blue-600 bg-white shadow-2xl scale-105"
-                      : "border-slate-200 bg-white hover:-translate-y-2 hover:border-blue-400 hover:shadow-xl"
-                  }
-              `}
-            >
+          bg-blue-600
 
-              {/* Background Glow */}
+          px-6
+          py-3
 
-              <div
-                className={`
-                  absolute
-                  inset-0
-                  rounded-[30px]
-                  transition-all
-                  duration-500
+          font-semibold
 
-                  ${
-                    active
-                      ? "bg-blue-50"
-                      : "opacity-0 group-hover:opacity-100 bg-blue-50"
-                  }
-                `}
-              />
+          text-white
 
-              <div className="relative z-10 flex h-full flex-col items-center justify-center">
+          transition
 
-                <div
-                  className={`
-                    mb-2
-                    flex
-                    h-8
-                    w-8
-                    items-center
-                    justify-center
-                    rounded-full
-                    transition-all
-                    duration-500
+          hover:bg-blue-700
+          "
+        >
 
-                    ${
-                        active
-                          ? "bg-blue-600"
-                          : "bg-blue-50 group-hover:bg-blue-100"
-                      }
-                  `}
-                >
+          Semua Produk
 
-                  <Icon
-                    size={25}
-                    className={
-                      active
-                        ? "text-white"
-                        : "text-blue-600"
-                    }
-                  />
+          <ArrowRight size={18} />
 
-                </div>
+        </button>
 
-                <h3 className="text-sm font-bold text-slate-900">
-                  {category}
-                </h3>
+      </div>
+            {/* Category Buttons */}
 
-                
-              </div>
+      <div
+        className="
+        flex
+        gap-3
+        overflow-x-auto
+        pb-2
+        no-scrollbar
+        "
+      >
 
-            </button>
+        {/* Semua */}
 
-          );
+        <button
+          onClick={() => onSelect("")}
+          className={`
+            shrink-0
+            rounded-full
+            px-5
+            py-3
+            text-sm
+            font-semibold
+            transition-all
+            duration-300
 
-        })}
+            ${
+              selected === ""
+                ? "bg-blue-600 text-white shadow-lg"
+                : "border border-slate-200 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600"
+            }
+          `}
+        >
+          Semua
+        </button>
+
+        {categories.map((category) => (
+
+          <button
+            key={category}
+            onClick={() => onSelect(category)}
+            className={`
+              shrink-0
+              rounded-full
+              border
+              px-5
+              py-3
+              text-sm
+              font-semibold
+              transition-all
+              duration-300
+
+              ${
+                selected === category
+                  ? "border-blue-600 bg-blue-600 text-white shadow-lg"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 hover:shadow-md"
+              }
+            `}
+          >
+            {category}
+          </button>
+
+        ))}
 
       </div>
 
