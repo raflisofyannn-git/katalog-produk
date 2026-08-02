@@ -1,83 +1,47 @@
-import {
-  ref,
-  get,
-  set,
-  update,
-} from "firebase/database";
+export interface WebsiteSetting {
+  id?: string;
 
-import { db } from "@/lib/firebase";
+  storeName: string;
+  logo: string;
 
-import { WebsiteSetting } from "@/types/setting";
+  adminPhone: string;
+  email: string;
+  address: string;
 
-const settingRef = ref(db, "settings");
+  instagram: string;
+  facebook: string;
+  tiktok: string;
 
+  // HERO
+  heroBadge: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  heroDescription: string;
 
-// =======================================
-// Ambil Setting Website
-// =======================================
+  heroButton: string;
+  heroWhatsappButton: string;
+  heroImage: string;
 
-export async function getSetting(): Promise<WebsiteSetting> {
-  const snapshot = await get(settingRef);
+  // Hero Feature Lama
+  heroFeatureTitle: string;
+  heroFeature1: string;
+  heroFeature2: string;
+  heroFeature3: string;
 
-  if (snapshot.exists()) {
-    return snapshot.val();
-  }
+  // Homepage Feature
+  feature1Title: string;
+  feature1Description: string;
 
-  const defaultSetting: WebsiteSetting = {
+  feature2Title: string;
+  feature2Description: string;
 
-    heroFeatureTitle: "PREORDER",
-    heroFeature1: "Original",
-    heroFeature2: "Harga Kompetitif",
-    heroFeature3: "Aman",
-    
-  storeName: "IMPORT STORE",
-  logo: "",
-  adminPhone: "",
-  email: "",
-  address: "",
+  feature3Title: string;
+  feature3Description: string;
 
-  heroBadge: "IMPORT PRODUK CHINA",
-  heroTitle: "100% ORIGINAL",
-  heroSubtitle: "Semua produk menggunakan sistem PREORDER. Barang langsung dikirim dari supplier terpercaya di China.",
-  heroButton: "Belanja Sekarang",
-  heroImage: "",
+  feature4Title: string;
+  feature4Description: string;
 
-  instagram: "",
-  facebook: "",
-  tiktok: "",
+  footerText: string;
 
-  footerText: "",
-
-  updatedAt: Date.now(),
-};
-
-  await set(settingRef, defaultSetting);
-
-  return defaultSetting;
-}
-
-// =======================================
-// Simpan Semua Setting
-// =======================================
-
-export async function saveSetting(
-  data: WebsiteSetting
-) {
-  await set(settingRef, {
-    ...data,
-    updatedAt: Date.now(),
-  });
-}
-
-// =======================================
-// Update Sebagian Setting
-// =======================================
-
-export async function updateSetting(
-  data: Partial<WebsiteSetting>
-) {
-  await update(settingRef, {
-    ...data,
-    updatedAt: Date.now(),
-  });
+  updatedAt: number;
 }

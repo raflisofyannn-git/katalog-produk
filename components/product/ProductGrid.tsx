@@ -17,7 +17,7 @@ export default function ProductGrid({
   // Loading Skeleton
   if (loading) {
     return (
-      <div className="mx-auto mt-8 grid max-w-7xl grid-cols-3 gap-4 px-3 md:gap-5 lg:grid-cols-5">
+      <div className="mx-auto mt-8 grid max-w-7xl grid-cols-3 gap-4 px-3 md:gap-5 lg:grid-cols-4">
         {Array.from({ length: 8 }).map((_, index) => (
           <ProductSkeleton key={index} />
         ))}
@@ -54,7 +54,7 @@ export default function ProductGrid({
         Produk
       </h2>
 
-      <div className="grid grid-cols-3 gap-4 px-1 md:gap-5 lg:grid-cols-5">
+      <div className="grid grid-cols-3 gap-4 px-1 md:gap-5 lg:grid-cols-4">
         {products.map((product) => (
           <ProductCard
             key={product.id}

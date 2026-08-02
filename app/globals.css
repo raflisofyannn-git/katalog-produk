@@ -22,3 +22,15 @@ body {
 html {
   scroll-behavior: smooth;
 }
+:root{
+  --primary:#2563EB;
+  --secondary:#0F172A;
+  --accent:#06B6D4;
+  --orange:#F97316;
+
+  --background:#F8FAFC;
+
+  --card:#FFFFFF;
+
+  --border:#E5E7EB;
+}

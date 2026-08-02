@@ -1,28 +1,38 @@
 "use client";
 
-//import { Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
+import {
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
+import {
+  FaInstagram,
+  FaFacebookF,
+  FaTiktok,
+} from "react-icons/fa";
+
 import { useSettings } from "@/hooks/useSettings";
 
 export default function Footer() {
   const { settings } = useSettings();
 
   return (
-    <footer className="mt-20 border-t bg-slate-900 text-white">
+    <footer className="mt-24 bg-slate-900 text-white">
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-3">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-4">
 
-        {/* Tentang */}
+        {/* Logo */}
 
         <div>
 
-          <h2 className="text-2xl font-bold">
-            {settings?.storeName || "IMPORT STORE"}
+          <h2 className="text-2xl font-extrabold text-cyan-400">
+            {settings?.storeName || "VINA FINDS"}
           </h2>
 
-          <p className="mt-4 text-sm text-slate-300">
-            {settings?.footerText ||
-              "Import produk berkualitas langsung dari supplier terpercaya di China."}
+          <p className="mt-4 leading-7 text-gray-300">
+            Import produk sport berkualitas dari supplier terpercaya
+            di China dengan sistem Pre Order yang aman dan terpercaya.
           </p>
 
         </div>
@@ -31,101 +41,139 @@ export default function Footer() {
 
         <div>
 
-          <h3 className="mb-4 text-lg font-semibold">
+          <h3 className="mb-4 text-lg font-bold">
             Menu
           </h3>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
 
             <Link
               href="/"
-              className="block hover:text-blue-400"
+              className="block text-gray-300 transition hover:text-cyan-400"
             >
               Home
             </Link>
 
             <a
               href="#produk"
-              className="block hover:text-blue-400"
+              className="block text-gray-300 transition hover:text-cyan-400"
             >
               Produk
             </a>
 
-            <Link
-              href="/tracking"
-              className="block hover:text-blue-400"
+            <a
+              href={`https://wa.me/${settings?.adminPhone}`}
+              target="_blank"
+              className="block text-gray-300 transition hover:text-cyan-400"
             >
-              Tracking Order
-            </Link>
+              Hubungi Kami
+            </a>
 
           </div>
 
         </div>
 
-        {/* Kontak */}
+        {/* Contact */}
 
         <div>
 
-          <h3 className="mb-4 text-lg font-semibold">
-            Hubungi Kami
+          <h3 className="mb-4 text-lg font-bold">
+            Kontak
           </h3>
 
-          <p className="text-slate-300">
-            WhatsApp
-          </p>
+          <div className="space-y-4">
 
-          <p className="font-semibold">
-            {settings?.adminPhone || "-"}
-          </p>
+            <div className="flex gap-3">
 
-          <p className="mt-4 text-slate-300">
-            Alamat
-          </p>
+              <Phone
+                size={18}
+                className="mt-1 text-cyan-400"
+              />
 
-          <div className="mt-6 flex gap-3">
+              <span className="text-gray-300">
+                {settings?.adminPhone || "-"}
+              </span>
 
-  {settings?.instagram && (
-    <a
-      href={settings.instagram}
-      target="_blank"
-      className="rounded-lg border border-slate-600 px-3 py-2 text-sm hover:bg-slate-800"
-    >
-      Instagram
-    </a>
-  )}
+            </div>
 
+            <div className="flex gap-3">
 
-  {settings?.facebook && (
-    <a
-      href={settings.facebook}
-      target="_blank"
-      className="rounded-lg border border-slate-600 px-3 py-2 text-sm hover:bg-slate-800"
-    >
-      Facebook
-    </a>
-  )}
+              <Mail
+                size={18}
+                className="mt-1 text-cyan-400"
+              />
 
+              <span className="text-gray-300">
+                {settings?.email || "-"}
+              </span>
 
-  {settings?.tiktok && (
-    <a
-      href={settings.tiktok}
-      target="_blank"
-      className="rounded-lg border border-slate-600 px-3 py-2 text-sm hover:bg-slate-800"
-    >
-      TikTok
-    </a>
-  )}
+            </div>
 
-</div>
+            <div className="flex gap-3">
+
+              <MapPin
+                size={18}
+                className="mt-1 text-cyan-400"
+              />
+
+              <span className="text-gray-300">
+                {settings?.address || "-"}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Social */}
+
+        <div>
+
+          <h3 className="mb-4 text-lg font-bold">
+            Ikuti Kami
+          </h3>
+
+          <div className="flex gap-4">
+
+            <a
+              href={settings?.instagram || "#"}
+              target="_blank"
+              className="rounded-xl bg-slate-800 p-3 transition hover:bg-cyan-500"
+            >
+              <FaInstagram size={22} />
+            </a>
+
+            <a
+              href={settings?.facebook || "#"}
+              target="_blank"
+              className="rounded-xl bg-slate-800 p-3 transition hover:bg-cyan-500"
+            >
+              <FaFacebookF size={22} />
+            </a>
+
+          </div>
 
         </div>
 
       </div>
 
-      <div className="border-t border-slate-700 py-5 text-center text-sm text-slate-400">
+      {/* Copyright */}
 
-        © {new Date().getFullYear()}{" "}
-        {settings?.storeName || "IMPORT STORE"}
+      <div className="border-t border-slate-800">
+
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-gray-400 md:flex-row">
+
+          <p>
+            © {new Date().getFullYear()} {settings?.storeName}.
+            All Rights Reserved.
+          </p>
+
+          <p>
+            Made with ❤️ in Indonesia
+          </p>
+
+        </div>
 
       </div>
 

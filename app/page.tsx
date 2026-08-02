@@ -14,6 +14,8 @@ import CartSidebar from "@/components/cart/CartSidebar";
 
 import CategoryFilter from "@/components/home/CategoryFilter";
 import Footer from "@/components/layout/Footer";
+import FeatureSection from "@/components/home/FeatureSection";
+import CTASection from "@/components/home/CTASection";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -51,6 +53,8 @@ export default function Home() {
 
       <Hero />
 
+      <FeatureSection />
+
       <SearchBar
         value={search}
         onChange={setSearch}
@@ -68,10 +72,13 @@ export default function Home() {
         onAddToCart={addToCart}
       />
 
+      <CTASection />
+
       <CartSidebar
-      open={openCart}
-      onClose={() => setOpenCart(false)}
+        open={openCart}
+        onClose={() => setOpenCart(false)}
       />
+
       <Footer />
     </>
   );
