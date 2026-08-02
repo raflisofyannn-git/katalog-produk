@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import SearchBar from "@/components/home/SearchBar";
 import ProductGrid from "@/components/product/ProductGrid";
+import OrderProcess from "@/components/home/OrderProcess";
 
 import { useProducts } from "@/hooks/useProducts";
 import { useCart } from "@/context/CartContext";
@@ -56,10 +57,7 @@ export default function Home() {
 
       <FeatureSection />
 
-      <SearchBar
-        value={search}
-        onChange={setSearch}
-      />
+     
 
       <CategorySection
         categories={categories}
@@ -79,6 +77,7 @@ export default function Home() {
         open={openCart}
         onClose={() => setOpenCart(false)}
       />
+    <OrderProcess />
 
       <Footer />
     </>

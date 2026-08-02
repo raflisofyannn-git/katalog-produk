@@ -5,8 +5,8 @@ import Link from "next/link";
 import {
   ShoppingCart,
   Eye,
-  Star,
-  Heart,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 
 import { Product } from "@/types/product";
@@ -21,26 +21,38 @@ export default function ProductCard({
   onAddToCart,
 }: Props) {
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <div
+  className="
+  group
+  relative
+  overflow-hidden
+  rounded-[28px]
+  border
+  border-slate-200
+  bg-white
+  shadow-[0_8px_30px_rgba(15,23,42,.08)]
+  transition-all
+  duration-500
+  hover:-translate-y-2
+  hover:border-blue-200
+  hover:shadow-[0_18px_50px_rgba(37,99,235,.18)]
+  "
+>
 
-      {/* NEW */}
-      <span className="absolute left-4 top-4 z-20 rounded-full bg-blue-600 px-3 py-1 text-xs font-bold text-white">
-        NEW
-      </span>
-
-      {/* Wishlist */}
-      <button
-        className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow transition hover:bg-red-50"
-      >
-        <Heart
-          size={18}
-          className="text-gray-500 hover:text-red-500"
-        />
-      </button>
-
+     
       <Link href={`/produk/${product.id}`}>
 
-        <div className="relative aspect-square overflow-hidden bg-gray-50">
+        <div
+  className="
+  relative
+  aspect-square
+  overflow-hidden
+  bg-gradient-to-br
+  from-slate-50
+  via-white
+  to-blue-50
+  "
+>
 
           <Image
             src={
@@ -50,60 +62,195 @@ export default function ProductCard({
             alt={product.name}
             fill
             sizes="(max-width:768px)100vw,25vw"
-            className="object-cover transition duration-500 group-hover:scale-110"
+            className="
+            object-cover
+            transition-all
+            duration-700
+            group-hover:scale-110
+            group-hover:rotate-1
+            "
           />
+
+      
+<div
+  className="
+  absolute
+  right-4
+  top-4
+  rounded-full
+  bg-white/90
+  p-2
+  shadow-lg
+  backdrop-blur
+  "
+>
+  <ShieldCheck
+    size={18}
+    className="text-blue-600"
+  />
+</div>
 
         </div>
 
       </Link>
 
-      <div className="space-y-3 p-5">
+     <div className="space-y-4 p-5">
 
-        <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+        <div className="flex items-center justify-between">
 
-          {product.category}
+  <span
+    className="
+    rounded-full
+    bg-blue-50
+    px-3
+    py-1
+    text-[16px]
+    font-bold
+    uppercase
+    tracking-wider
+    text-blue-600
+    "
+  >
+    {product.category}
+  </span>
 
-        </span>
+  
 
-        <h3 className="line-clamp-2 min-h-[56px] text-lg font-bold">
+</div>
 
-          {product.name}
-
-        </h3>
+        <h3
+  className="
+  line-clamp-2
+  min-h-[52px]
+  text-lg
+  font-extrabold
+  leading-7
+  text-slate-800
+  transition
+  group-hover:text-blue-600
+  "
+>
+  {product.name}
+</h3>
 
         
-        <p className="text-2xl font-extrabold text-blue-600">
+        <div>
 
-          Rp {product.price.toLocaleString("id-ID")}
+  <p
+    className="
+    text-xs
+    uppercase
+    tracking-wider
+    text-slate-500
+    "
+  >
+    Harga
+  </p>
 
-        </p>
+  <h2
+    className="
+    mt-1
+    text-2xl
+    font-black
+    tracking-tight
+    text-blue-600
+    "
+  >
+    Rp {product.price.toLocaleString("id-ID")}
+  </h2>
 
-        <div className="flex gap-3">
+</div>
 
-          <Link
-            href={`/produk/${product.id}`}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl border py-3 font-semibold transition hover:bg-gray-100"
-          >
-            <Eye size={18} />
+        <div className="mt-2 flex gap-3">
 
-            Detail
-          </Link>
+  <Link
+    href={`/produk/${product.id}`}
+    className="
+    group/detail
+    flex
+    h-12
+    flex-1
+    items-center
+    justify-center
+    gap-2
+    rounded-2xl
+    border
+    border-slate-200
+    bg-white
+    font-semibold
+    text-slate-700
+    transition-all
+    duration-300
+    hover:border-blue-600
+    hover:text-blue-600
+    "
+  >
 
-          <button
-            onClick={() =>
-              onAddToCart(product)
-            }
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
-          >
-            <ShoppingCart size={18} />
+    <Eye
+      size={18}
+      className="transition group-hover/detail:scale-110"
+    />
 
-            Cart
-          </button>
+    Detail
 
-        </div>
+    <ArrowRight
+      size={16}
+      className="
+      transition
+      group-hover/detail:translate-x-1
+      "
+    />
+
+  </Link>
+
+  <button
+    onClick={() => onAddToCart(product)}
+    className="
+    group/cart
+    flex
+    h-12
+    flex-1
+    items-center
+    justify-center
+    gap-2
+    rounded-2xl
+    bg-blue-600
+    font-semibold
+    text-white
+    shadow-lg
+    transition-all
+    duration-300
+    hover:-translate-y-0.5
+    hover:bg-blue-700
+    hover:shadow-xl
+    "
+  >
+
+    <ShoppingCart
+      size={20}
+      className="transition group-hover/cart:rotate-12"
+    />
+
+    Add
+
+  </button>
+
+</div>
 
       </div>
-
+<div
+  className="
+  pointer-events-none
+  absolute
+  inset-0
+  rounded-[28px]
+  ring-0
+  transition-all
+  duration-500
+  group-hover:ring-2
+  group-hover:ring-blue-100
+  "
+/>
     </div>
   );
 }

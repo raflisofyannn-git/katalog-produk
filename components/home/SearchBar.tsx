@@ -12,66 +12,64 @@ export default function SearchBar({
   onChange,
 }: Props) {
   return (
-    <section className="mx-auto mt-24 max-w-7xl px-6">
+    <section className="relative z-20 -mt-10 mb-20">
 
-      <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+  <div className="mx-auto flex max-w-7xl justify-center px-6">
 
-        <div className="flex flex-col gap-4 md:flex-row">
+    <div
+      className="
+      flex
+      w-full
+      max-w-2xl
+      items-center
+      rounded-3xl
+      border
+      border-slate-200
+      bg-white
+      p-3
+      shadow-[0_18px_50px_rgba(15,23,42,.08)]
+      "
+    >
 
-          {/* Search */}
+      <Search
+        size={22}
+        className="ml-4 text-slate-400"
+      />
 
-          <div className="relative flex-1">
+      <input
+        type="text"
+        placeholder="Cari produk..."
+        className="
+        flex-1
+        border-none
+        bg-transparent
+        px-4
+        py-3
+        text-lg
+        outline-none
+        placeholder:text-slate-400
+        "
+      />
 
-            <Search
-              size={20}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-            />
+      <button
+        className="
+        rounded-2xl
+        bg-blue-600
+        px-8
+        py-4
+        font-semibold
+        text-white
+        transition
+        hover:bg-blue-700
+        "
+      >
+        Cari
+      </button>
 
-            <input
-              value={value}
-              onChange={(e) =>
-                onChange(e.target.value)
-              }
-              placeholder="Cari produk..."
-              className="
-                h-14
-                w-full
-                rounded-2xl
-                border
-                border-gray-200
-                bg-gray-50
-                pl-12
-                pr-4
-                outline-none
-                transition
-                focus:border-blue-500
-                focus:bg-white
-              "
-            />
+    </div>
 
-          </div>
+  </div>
 
-          {/* Button */}
-
-          <button
-            className="
-              h-14
-              rounded-2xl
-              bg-blue-600
-              px-8
-              font-semibold
-              text-white
-              transition
-              hover:bg-blue-700
-            "
-          >
-            Cari
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
+</section>
   );
 }

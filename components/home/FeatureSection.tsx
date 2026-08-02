@@ -1,22 +1,23 @@
 "use client";
 
 import {
-  Globe,
-  Package,
+  ShipWheel,
+  BadgeCheck,
   ShieldCheck,
-  Headphones,
+  Headset,
+  ArrowRight,
 } from "lucide-react";
 
 import { useSettings } from "@/hooks/useSettings";
 
 const features = [
   {
-    icon: Globe,
+    icon: ShipWheel,
     titleKey: "feature1Title",
     descKey: "feature1Description",
   },
   {
-    icon: Package,
+    icon: BadgeCheck,
     titleKey: "feature2Title",
     descKey: "feature2Description",
   },
@@ -26,7 +27,7 @@ const features = [
     descKey: "feature3Description",
   },
   {
-    icon: Headphones,
+    icon: Headset,
     titleKey: "feature4Title",
     descKey: "feature4Description",
   },
@@ -35,50 +36,130 @@ const features = [
 export default function FeatureSection() {
   const { settings } = useSettings();
 
+console.log(settings);
+
   if (!settings) return null;
 
-  return (
-    <section className="relative z-20 -mt-24">
-      <div className="mx-auto max-w-7xl px-6">
+return (
+ <section
+  className="
+  relative
+  z-30
+  -mt-16
+  py-8
+  "
+>
 
-        <div className="overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)] grid md:grid-cols-2 lg:grid-cols-4">
+    <div className="mx-auto max-w-7xl px-6">
 
-          {features.map((item, index) => {
+      <div
+          className="
+          overflow-hidden
+          rounded-[40px]
+          border
+          border-white/60
+          bg-white/95
+          backdrop-blur-2xl
+          shadow-[0_35px_80px_rgba(15,23,42,.10)]
+          ring-1
+          ring-slate-100
+          grid
+          md:grid-cols-2
+          lg:grid-cols-4
+          "
+        >
 
-            const Icon = item.icon;
+        {features.map((item, index) => {
 
-            return (
-              <div
-                key={index}
-                className="group lg:border-r last:lg:border-r-0 border-gray-200 p-10 text-center transition duration-300 hover:-translate-y-2 hover:bg-slate-50"
-              >
+          const Icon = item.icon;
 
-                <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-blue-50 transition group-hover:scale-110">
+          return (
 
-                  <Icon
-                    size={44}
-                    className="text-blue-600"
-                  />
+            <div
+  key={index}
+  className="
+group
+relative
+flex
+min-h-[280px]
+flex-col
+border-r
+border-slate-100
+bg-white
+px-10
+py-8
+transition-all
+duration-500
+hover:-translate-y-2
+hover:shadow-xl
+last:border-r-0
+"
+>
 
-                </div>
+  {/* Accent */}
 
-                <h3 className="text-3xl font-bold">
+  <div
+    className="
+    absolute
+    left-0
+    top-0
+    h-1
+    w-0
+    bg-blue-600
+    transition-all
+    duration-500
+    group-hover:w-full
+    "
+  />
 
-                  {settings[item.titleKey]}
+  {/* Icon */}
 
-                </h3>
+  <div className="flex h-20 items-start">
+  <div
+    className="
+    flex
+    h-16
+    w-16
+    items-center
+    justify-center
+    rounded-2xl
+    border
+    border-slate-100
+    bg-white
+    shadow-md
+    "
+  >
+    <Icon size={30} className="text-blue-600" />
+  </div>
+</div>
 
-                <p className="mt-5 text-lg leading-8 text-gray-500">
+  {/* Title */}
 
-                  {settings[item.descKey]}
+  <h3 className="text-2xl font-extrabold text-slate-900">
 
-                </p>
+    {settings[item.titleKey as keyof typeof settings]}
 
-              </div>
-            );
-          })}
-        </div>
+  </h3>
+
+  {/* Description */}
+
+  <p className="mt-5 leading-8 text-slate-500">
+
+    {settings[item.descKey as keyof typeof settings]}
+
+  </p>
+
+
+</div>
+
+          );
+
+        })}
+
       </div>
-    </section>
-  );
+
+    </div>
+
+  </section>
+);
 }

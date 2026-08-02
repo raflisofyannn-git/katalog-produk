@@ -6,6 +6,7 @@ import {
   Backpack,
   Dumbbell,
   Shirt,
+  ArrowRight,
 } from "lucide-react";
 
 interface Props {
@@ -28,92 +29,156 @@ export default function CategorySection({
   onSelect,
 }: Props) {
   return (
-    <section className="mx-auto mt-24 max-w-7xl px-6">
+    <section className="mx-auto mt-8 max-w-7xl px-6">
 
-      <div className="mb-10 flex items-center justify-between">
+      {/* Header */}
 
-        <div>
+    <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 
-          <h2 className="text-4xl font-bold">
-            Kategori Produk
-          </h2>
+      <div>
 
-          <p className="mt-2 text-gray-500">
-            Pilih kategori sesuai kebutuhan Anda.
-          </p>
+        <p className="text-sm font-bold uppercase tracking-[0.35em] text-blue-600">
+          CATEGORY
+        </p>
 
-        </div>
+        <h2 className="mt-2 text-4xl font-black tracking-tight text-slate-900">
+          Kategori Produk
+        </h2>
 
-        <button
-          onClick={() => onSelect("")}
-          className="font-semibold text-blue-600 hover:underline"
-        >
-          Semua →
-        </button>
+        <p className="mt-2 text-slate-500">
+          Pilih kategori sesuai kebutuhan Anda.
+        </p>
 
       </div>
 
-     <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
+      <button
+        onClick={() => onSelect("")}
+        className="
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          border
+          border-blue-200
+          bg-blue-50
+          px-6
+          py-3
+          font-semibold
+          text-blue-600
+          transition-all
+          duration-300
+          hover:bg-blue-600
+          hover:text-white
+          hover:shadow-lg
+        "
+      >
+        Semua Kategori
+
+        <ArrowRight size={18} />
+
+      </button>
+
+    </div>
+
+      {/* Card */}
+
+      <div className="flex flex-wrap justify-center gap-3">
 
         {categories.map((category, index) => {
 
           const Icon = icons[index % icons.length];
 
-          return (
-            <button
-  key={category}
-  onClick={() => onSelect(category)}
-  className={`group h-56 rounded-[28px] border border-slate-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-2xl
+          const active = selected === category;
 
-    ${
-      selected === category
-  ? "border-blue-600 bg-blue-600"
-  : "bg-white"
-    }
-  `}
->
+          return (
+
+            <button
+              key={category}
+              onClick={() => onSelect(category)}
+              className={`
+                group
+                relative
+                h-[120px]
+                w-[120px]
+                overflow-hidden
+                rounded-[30px]
+                border
+                transition-all
+                duration-500
+                shadow-sm
+
+                ${
+                    active
+                      ? "border-blue-600 bg-white shadow-2xl scale-105"
+                      : "border-slate-200 bg-white hover:-translate-y-2 hover:border-blue-400 hover:shadow-xl"
+                  }
+              `}
+            >
+
+              {/* Background Glow */}
 
               <div
-  className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full transition
+                className={`
+                  absolute
+                  inset-0
+                  rounded-[30px]
+                  transition-all
+                  duration-500
 
-    ${
-      selected === category
-        ? "bg-white/20"
-        : "bg-blue-50 group-hover:bg-blue-100"
-    }
-  `}
->
+                  ${
+                    active
+                      ? "bg-blue-50"
+                      : "opacity-0 group-hover:opacity-100 bg-blue-50"
+                  }
+                `}
+              />
 
-                <Icon
-                size={48}
-                className={selected === category ? "text-white" : "text-blue-600"}
-                />
+              <div className="relative z-10 flex h-full flex-col items-center justify-center">
 
+                <div
+                  className={`
+                    mb-2
+                    flex
+                    h-8
+                    w-8
+                    items-center
+                    justify-center
+                    rounded-full
+                    transition-all
+                    duration-500
+
+                    ${
+                        active
+                          ? "bg-blue-600"
+                          : "bg-blue-50 group-hover:bg-blue-100"
+                      }
+                  `}
+                >
+
+                  <Icon
+                    size={25}
+                    className={
+                      active
+                        ? "text-white"
+                        : "text-blue-600"
+                    }
+                  />
+
+                </div>
+
+                <h3 className="text-sm font-bold text-slate-900">
+                  {category}
+                </h3>
+
+                
               </div>
 
-              <h3
-  className={`mt-4 text-lg font-bold ${
-    selected === category
-      ? "text-white"
-      : "text-slate-900"
-  }`}
->
-  {category}
-</h3>
-
-<p
-  className={`mt-2 text-sm ${
-    selected === category
-      ? "text-blue-100"
-      : "text-slate-500"
-  }`}
->
-  Lihat Produk
-</p>
-
             </button>
+
           );
+
         })}
+
       </div>
 
     </section>

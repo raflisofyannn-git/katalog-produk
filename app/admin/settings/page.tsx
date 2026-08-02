@@ -6,6 +6,7 @@ import { WebsiteSetting } from "@/types/setting";
 import { useSettings } from "@/hooks/useSettings";
 import SingleImageUpload from "@/components/ui/SingleImageUpload";
 
+
 import LoadingButton from "@/components/ui/LoadingButton";
 
 import { toast } from "sonner";
@@ -253,86 +254,151 @@ export default function AdminSettingPage() {
 
             </div>
 
-            {/* Hero Feature */}
+  
+{/* ================= FEATURE SECTION ================= */}
 
-            <div>
+<div className="border-t pt-8">
 
-            <label className="mb-2 block font-semibold">
-              Judul Feature Banner
-            </label>
+  <h2 className="mb-6 text-2xl font-bold">
+    Feature Section
+  </h2>
 
-            <input
-            value={form.heroFeatureTitle || ""}
-            onChange={(e)=>
-            setForm({
-              ...form,
-              heroFeatureTitle:e.target.value,
-            })
-            }
-            className="w-full rounded-xl border p-3"
-            />
+  {/* Feature 1 */}
 
-            </div>
+  <div className="space-y-4">
 
+    <label className="font-semibold">
+      Feature 1 Title
+    </label>
 
-            <div>
+    <input
+      value={form.feature1Title || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature1Title: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+      placeholder="Import Langsung"
+    />
 
-            <label className="mb-2 block font-semibold">
-              Feature 1
-            </label>
+    <textarea
+      rows={3}
+      value={form.feature1Description || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature1Description: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+      placeholder="Produk langsung dari supplier terpercaya."
+    />
 
-            <input
-            value={form.heroFeature1 || ""}
-            onChange={(e)=>
-            setForm({
-              ...form,
-              heroFeature1:e.target.value,
-            })
-            }
-            className="w-full rounded-xl border p-3"
-            />
+  </div>
 
-            </div>
+  {/* Feature 2 */}
 
+  <div className="mt-8 space-y-4">
 
-            <div>
+    <label className="font-semibold">
+      Feature 2 Title
+    </label>
 
-            <label className="mb-2 block font-semibold">
-              Feature 2
-            </label>
+    <input
+      value={form.feature2Title || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature2Title: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+    />
 
-            <input
-            value={form.heroFeature2 || ""}
-            onChange={(e)=>
-            setForm({
-              ...form,
-              heroFeature2:e.target.value,
-            })
-            }
-            className="w-full rounded-xl border p-3"
-            />
+    <textarea
+      rows={3}
+      value={form.feature2Description || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature2Description: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+    />
 
-            </div>
+  </div>
 
+  {/* Feature 3 */}
 
-            <div>
+  <div className="mt-8 space-y-4">
 
-            <label className="mb-2 block font-semibold">
-              Feature 3
-            </label>
+    <label className="font-semibold">
+      Feature 3 Title
+    </label>
 
-            <input
-            value={form.heroFeature3 || ""}
-            onChange={(e)=>
-            setForm({
-              ...form,
-              heroFeature3:e.target.value,
-            })
-            }
-            className="w-full rounded-xl border p-3"
-            />
+    <input
+      value={form.feature3Title || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature3Title: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+    />
 
-            </div>
+    <textarea
+      rows={3}
+      value={form.feature3Description || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature3Description: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+    />
+
+  </div>
+
+  {/* Feature 4 */}
+
+  <div className="mt-8 space-y-4">
+
+    <label className="font-semibold">
+      Feature 4 Title
+    </label>
+
+    <input
+      value={form.feature4Title || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature4Title: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+    />
+
+    <textarea
+      rows={3}
+      value={form.feature4Description || ""}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          feature4Description: e.target.value,
+        })
+      }
+      className="w-full rounded-xl border p-3"
+    />
+
+  </div>
+
+</div>
+
 
                {/* Logo */}
 
@@ -341,6 +407,7 @@ export default function AdminSettingPage() {
             <label className="mb-3 block font-semibold">
               Logo Website
             </label>
+            
             <SingleImageUpload
             value={form.logo || ""}
             onChange={(url) =>
