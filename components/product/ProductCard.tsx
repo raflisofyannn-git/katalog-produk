@@ -25,17 +25,14 @@ export default function ProductCard({
   className="
   group
   relative
+  flex
+  h-full
+  flex-col
   overflow-hidden
   rounded-[28px]
   border
   border-slate-200
   bg-white
-  shadow-[0_8px_30px_rgba(15,23,42,.08)]
-  transition-all
-  duration-500
-  hover:-translate-y-2
-  hover:border-blue-200
-  hover:shadow-[0_18px_50px_rgba(37,99,235,.18)]
   "
 >
 
@@ -45,7 +42,7 @@ export default function ProductCard({
         <div
   className="
   relative
-  aspect-square
+  aspect-[4/5]
   overflow-hidden
   bg-gradient-to-br
   from-slate-50
@@ -94,7 +91,15 @@ export default function ProductCard({
 
       </Link>
 
-     <div className="space-y-4 p-5">
+    <div
+  className="
+  flex
+  flex-1
+  flex-col
+  p-4
+  lg:p-5
+  "
+>
 
         <div className="flex items-center justify-between">
 
@@ -122,7 +127,8 @@ export default function ProductCard({
   className="
   line-clamp-2
   min-h-[52px]
-  text-lg
+ text-base
+lg:text-lg
   font-extrabold
   leading-7
   text-slate-800
@@ -150,7 +156,8 @@ export default function ProductCard({
   <h2
     className="
     mt-1
-    text-2xl
+    text-xl
+lg:text-2xl
     font-black
     tracking-tight
     text-blue-600
@@ -168,7 +175,8 @@ export default function ProductCard({
     className="
     group/detail
     flex
-    h-12
+    h-10
+lg:h-12
     flex-1
     items-center
     justify-center
@@ -227,7 +235,7 @@ export default function ProductCard({
   >
 
     <ShoppingCart
-      size={20}
+      size={18}
       className="transition group-hover/cart:rotate-12"
     />
 
@@ -243,7 +251,7 @@ export default function ProductCard({
   pointer-events-none
   absolute
   inset-0
-  rounded-[28px]
+  rounded-3xl
   ring-0
   transition-all
   duration-500

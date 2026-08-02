@@ -88,7 +88,7 @@ export default function Navbar({
             : "bg-white/70 backdrop-blur-xl"
         }`}
       >
-        <div className="mx-auto hidden h-24 max-w-7xl items-center justify-between px-6 md:flex">
+        <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
 
           {/* Logo */}
 

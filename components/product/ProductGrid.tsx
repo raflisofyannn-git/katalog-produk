@@ -31,11 +31,34 @@ export default function ProductGrid({
               COLLECTION
             </p>
 
-            <h2 className="mt-3 text-5xl font-black tracking-tight text-slate-900">
+            <h2
+  className="
+  mt-3
+  text-3xl
+  font-black
+  tracking-tight
+  text-slate-900
+
+  md:text-4xl
+
+  lg:text-5xl
+  "
+>
               Produk Pilihan
             </h2>
 
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-500">
+            <p
+  className="
+  mt-4
+  max-w-2xl
+  text-base
+  leading-7
+  text-slate-500
+
+  lg:text-lg
+  lg:leading-8
+  "
+>
               Temukan perlengkapan Diving, Swimming, Outdoor dan
               Sport berkualitas langsung dari supplier terpercaya
               di China.
@@ -52,15 +75,16 @@ export default function ProductGrid({
         {/* Skeleton */}
 
         <div
-          className="
-          grid
-          grid-cols-3
-          gap-5
-          md:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          "
-        >
+  className="
+  grid
+  grid-cols-2
+  gap-4
+  sm:grid-cols-3
+  md:grid-cols-4
+  lg:grid-cols-5
+  auto-rows-fr
+  "
+>
           {Array.from({ length: 12 }).map((_, index) => (
             <ProductSkeleton key={index} />
           ))}
@@ -128,21 +152,20 @@ export default function ProductGrid({
 
       ) : (
 
-        <div
-          className="
-          grid
-          grid-cols-3
-          gap-5
-          md:grid-cols-3
-          lg:grid-cols-5
+       <div
+  className="
+  grid
+  grid-cols-2
+  gap-4
+  auto-rows-fr
 
-          md:grid-cols-4
+  sm:grid-cols-3
 
-          xl:grid-cols-5
+  md:grid-cols-4
 
-          2xl:grid-cols-6
-          "
-        >
+  lg:grid-cols-5
+  "
+>
 
           {products.map((product) => (
 

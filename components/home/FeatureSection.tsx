@@ -41,14 +41,7 @@ console.log(settings);
   if (!settings) return null;
 
 return (
- <section
-  className="
-  relative
-  z-30
-  -mt-16
-  py-8
-  "
->
+ <section className="relative z-30 -mt-16 py-8 hidden lg:block">
 
     <div className="mx-auto max-w-7xl px-6">
 
