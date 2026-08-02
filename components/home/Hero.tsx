@@ -264,7 +264,7 @@ if (!settings) {
             height={420}
             className="
             absolute
-            right-0
+            right-10
             top-12
             z-30
             "
@@ -275,12 +275,12 @@ if (!settings) {
           <Image
             src="/hero/mask3.png"
             alt="Drybag"
-            width={210}
-            height={210}
+            width={170}
+            height={170}
             className="
             absolute
-            left-28
-            bottom-24
+            left-40
+            bottom-20
             z-40
             "
           />
