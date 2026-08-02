@@ -12,7 +12,7 @@ export default function SearchBar({
   onChange,
 }: Props) {
   return (
-    <section className="mx-auto mt-12 max-w-7xl px-4">
+    <section className="mx-auto mt-24 max-w-7xl px-6">
 
       <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
 

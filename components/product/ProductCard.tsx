@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCart, Star } from "lucide-react";
+import {
+  ShoppingCart,
+  Eye,
+  Star,
+  Heart,
+} from "lucide-react";
 
 import { Product } from "@/types/product";
 
@@ -16,96 +21,89 @@ export default function ProductCard({
   onAddToCart,
 }: Props) {
   return (
-    <Link href={`/produk/${product.id}`}>
-      <div className="group overflow-hidden rounded-3xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
-        {/* Badge */}
-        <div className="absolute z-10 m-3 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white shadow-lg">
-          BEST SELLER
-        </div>
+      {/* NEW */}
+      <span className="absolute left-4 top-4 z-20 rounded-full bg-blue-600 px-3 py-1 text-xs font-bold text-white">
+        NEW
+      </span>
 
-        {/* Image */}
-        <div className="relative aspect-square overflow-hidden bg-gray-100">
+      {/* Wishlist */}
+      <button
+        className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow transition hover:bg-red-50"
+      >
+        <Heart
+          size={18}
+          className="text-gray-500 hover:text-red-500"
+        />
+      </button>
+
+      <Link href={`/produk/${product.id}`}>
+
+        <div className="relative aspect-square overflow-hidden bg-gray-50">
 
           <Image
-            src={product.images?.[0] || "/placeholder.png"}
+            src={
+              product.images?.[0] ||
+              "/placeholder.png"
+            }
             alt={product.name}
             fill
-            sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 25vw"
+            sizes="(max-width:768px)100vw,25vw"
             className="object-cover transition duration-500 group-hover:scale-110"
           />
 
         </div>
 
-        {/* Content */}
+      </Link>
 
-        <div className="space-y-3 p-5">
+      <div className="space-y-3 p-5">
 
-          {/* Rating */}
+        <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
 
-          <div className="flex items-center gap-1">
+          {product.category}
 
-            <Star
-              size={16}
-              className="fill-yellow-400 text-yellow-400"
-            />
+        </span>
 
-            <span className="text-sm font-medium">
-              4.9
-            </span>
+        <h3 className="line-clamp-2 min-h-[56px] text-lg font-bold">
 
-            <span className="text-xs text-gray-400">
-              (120)
-            </span>
+          {product.name}
 
-          </div>
+        </h3>
 
-          {/* Product */}
+        
+        <p className="text-2xl font-extrabold text-blue-600">
 
-          <h3 className="line-clamp-2 min-h-[56px] text-lg font-bold text-gray-900">
+          Rp {product.price.toLocaleString("id-ID")}
 
-            {product.name}
+        </p>
 
-          </h3>
+        <div className="flex gap-3">
 
-          {/* Category */}
+          <Link
+            href={`/produk/${product.id}`}
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl border py-3 font-semibold transition hover:bg-gray-100"
+          >
+            <Eye size={18} />
 
-          <p className="text-sm text-gray-500">
-
-            {product.category}
-
-          </p>
-
-          {/* Price */}
-
-          <div>
-
-            <p className="text-2xl font-extrabold text-blue-600">
-
-              Rp {product.price.toLocaleString("id-ID")}
-
-            </p>
-
-          </div>
-
-          {/* Button */}
+            Detail
+          </Link>
 
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onAddToCart(product);
-            }}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 active:scale-95"
+            onClick={() =>
+              onAddToCart(product)
+            }
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
           >
             <ShoppingCart size={18} />
 
-            Tambah ke Keranjang
+            Cart
           </button>
 
         </div>
 
       </div>
-    </Link>
+
+    </div>
   );
 }

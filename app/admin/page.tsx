@@ -1,5 +1,6 @@
 "use client";
 
+import StatCard from "@/components/admin/dashboard/StatCard";
 import {
   Package,
   ShoppingCart,
@@ -57,210 +58,73 @@ export default function AdminDashboard() {
 
       {/* Statistik */}
 
-      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
+  <StatCard
+    title="Total Produk"
+    value={totalProducts}
+    icon={Package}
+    color="text-blue-600"
+    bg="bg-white"
+  />
 
-          <div className="flex items-center justify-between">
+  <StatCard
+    title="Total Customer"
+    value={totalCustomers}
+    icon={Users}
+    color="text-green-600"
+    bg="bg-white"
+  />
 
-            <div>
+  <StatCard
+    title="Total Pesanan"
+    value={totalOrders}
+    icon={ShoppingCart}
+    color="text-indigo-600"
+    bg="bg-white"
+  />
 
-              <p className="text-sm text-gray-500">
-                Total Pesanan
-              </p>
+  <StatCard
+    title="Pending"
+    value={pendingOrders}
+    icon={Clock3}
+    color="text-yellow-600"
+    bg="bg-yellow-50"
+  />
 
-              <div className="rounded-2xl border bg-white p-6 shadow-sm">
+  <StatCard
+    title="Ordered"
+    value={orderedOrders}
+    icon={ShoppingCart}
+    color="text-blue-600"
+    bg="bg-blue-50"
+  />
 
-  <div className="flex items-center justify-between">
+  <StatCard
+    title="Arrived"
+    value={arrivedOrders}
+    icon={Truck}
+    color="text-purple-600"
+    bg="bg-purple-50"
+  />
 
-    <div>
+  <StatCard
+    title="Completed"
+    value={completedOrders}
+    icon={CheckCircle2}
+    color="text-green-600"
+    bg="bg-green-50"
+  />
 
-      <p className="text-sm text-gray-500">
-        Total Produk
-      </p>
-
-      <h2 className="mt-3 text-4xl font-bold">
-        {totalProducts}
-      </h2>
-
-    </div>
-
-    <Package
-      size={42}
-      className="text-blue-600"
-    />
-
-  </div>
+  <StatCard
+    title="Total Omzet"
+    value={formatCurrency(totalRevenue)}
+    icon={Wallet}
+    color="text-cyan-600"
+    bg="bg-cyan-50"
+  />
 
 </div>
-
-
-<div className="rounded-2xl border bg-white p-6 shadow-sm">
-
-  <div className="flex items-center justify-between">
-
-    <div>
-
-      <p className="text-sm text-gray-500">
-        Total Customer
-      </p>
-
-      <h2 className="mt-3 text-4xl font-bold">
-        {totalCustomers}
-      </h2>
-
-    </div>
-
-    <Users
-      size={42}
-      className="text-green-600"
-    />
-
-  </div>
-
-</div>
-
-              <h2 className="mt-3 text-4xl font-bold">
-                {totalOrders}
-              </h2>
-
-            </div>
-
-            <Package
-              size={42}
-              className="text-blue-600"
-            />
-
-          </div>
-
-        </div>
-
-        <div className="rounded-2xl border bg-yellow-50 p-6 shadow-sm">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <p className="text-sm text-gray-500">
-                Pending
-              </p>
-
-              <h2 className="mt-3 text-4xl font-bold text-yellow-600">
-                {pendingOrders}
-              </h2>
-
-            </div>
-
-            <Clock3
-              size={42}
-              className="text-yellow-600"
-            />
-
-          </div>
-
-        </div>
-
-        <div className="rounded-2xl border bg-blue-50 p-6 shadow-sm">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <p className="text-sm text-gray-500">
-                Ordered
-              </p>
-
-              <h2 className="mt-3 text-4xl font-bold text-blue-600">
-                {orderedOrders}
-              </h2>
-
-            </div>
-
-            <ShoppingCart
-              size={42}
-              className="text-blue-600"
-            />
-
-          </div>
-
-        </div>
-
-        <div className="rounded-2xl border bg-purple-50 p-6 shadow-sm">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <p className="text-sm text-gray-500">
-                Arrived
-              </p>
-
-              <h2 className="mt-3 text-4xl font-bold text-purple-600">
-                {arrivedOrders}
-              </h2>
-
-            </div>
-
-            <Truck
-              size={42}
-              className="text-purple-600"
-            />
-
-          </div>
-
-        </div>
-
-        <div className="rounded-2xl border bg-green-50 p-6 shadow-sm">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <p className="text-sm text-gray-500">
-                Completed
-              </p>
-
-              <h2 className="mt-3 text-4xl font-bold text-green-600">
-                {completedOrders}
-              </h2>
-
-            </div>
-
-            <CheckCircle2
-              size={42}
-              className="text-green-600"
-            />
-
-          </div>
-
-        </div>
-
-        <div className="rounded-2xl border bg-cyan-50 p-6 shadow-sm">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <p className="text-sm text-gray-500">
-                Total Omzet
-              </p>
-
-              <h2 className="mt-3 text-2xl font-bold text-cyan-600">
-                {formatCurrency(totalRevenue)}
-              </h2>
-
-            </div>
-
-            <Wallet
-              size={42}
-              className="text-cyan-600"
-            />
-
-          </div>
-
-        </div>
-
-      </div>
 
       {/* Produk Terlaris */}
 

@@ -6,7 +6,7 @@ import {
   getSetting,
   saveSetting,
   updateSetting,
-} from "@/services/settingService";
+} from "@/services/settingsService";
 
 import { WebsiteSetting } from "@/types/setting";
 

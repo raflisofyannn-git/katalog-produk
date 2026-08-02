@@ -1,7 +1,8 @@
 "use client";
 
+//import FeatureSection from "@/components/home/FeatureSection";
 import { useMemo, useState } from "react";
-
+import CategorySection from "@/components/home/CategorySection";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import SearchBar from "@/components/home/SearchBar";
@@ -60,7 +61,7 @@ export default function Home() {
         onChange={setSearch}
       />
 
-      <CategoryFilter
+      <CategorySection
         categories={categories}
         selected={selectedCategory}
         onSelect={setSelectedCategory}
