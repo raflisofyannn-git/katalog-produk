@@ -133,6 +133,8 @@ export default function ProductGrid({
           grid
           grid-cols-3
           gap-5
+          md:grid-cols-3
+          lg:grid-cols-5
 
           md:grid-cols-4
 
