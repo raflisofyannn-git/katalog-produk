@@ -33,6 +33,11 @@ export default function ProductCard({
   border
   border-slate-200
   bg-white
+shadow-sm
+transition-all
+duration-500
+hover:-translate-y-2
+hover:shadow-xl
   "
 >
 
@@ -45,9 +50,9 @@ export default function ProductCard({
   aspect-[4/5]
   overflow-hidden
   bg-gradient-to-br
-  from-slate-50
-  via-white
-  to-blue-50
+  from-white
+  via-slate-50
+  to-white
   "
 >
 
@@ -60,11 +65,11 @@ export default function ProductCard({
             fill
             sizes="(max-width:768px)100vw,25vw"
             className="
-            object-cover
+            object-contain
+            p-4
             transition-all
-            duration-700
-            group-hover:scale-110
-            group-hover:rotate-1
+            duration-500
+            group-hover:scale-105
             "
           />
 
@@ -72,17 +77,17 @@ export default function ProductCard({
 <div
   className="
   absolute
-  right-4
-  top-4
+  right-3
+top-3
   rounded-full
   bg-white/90
-  p-2
+  p-1.5
   shadow-lg
   backdrop-blur
   "
 >
   <ShieldCheck
-    size={18}
+    size={16}
     className="text-blue-600"
   />
 </div>
@@ -109,10 +114,12 @@ export default function ProductCard({
     bg-blue-50
     px-3
     py-1
-    text-[16px]
+    text-[10px]
+sm:text-xs
+lg:text-sm
     font-bold
     uppercase
-    tracking-wider
+    tracking-[0.2em]
     text-blue-600
     "
   >
@@ -126,11 +133,11 @@ export default function ProductCard({
         <h3
   className="
   line-clamp-2
-  min-h-[52px]
+  min-h-[48px]
  text-base
 lg:text-lg
   font-extrabold
-  leading-7
+  leading-6
   text-slate-800
   transition
   group-hover:text-blue-600
@@ -140,14 +147,14 @@ lg:text-lg
 </h3>
 
         
-        <div>
+        <div className="mt-4">
 
   <p
     className="
-    text-xs
+    text-[10px]
     uppercase
-    tracking-wider
-    text-slate-500
+    tracking-[0.25em]
+    text-slate-400
     "
   >
     Harga
@@ -156,11 +163,14 @@ lg:text-lg
   <h2
     className="
     mt-1
-    text-xl
-lg:text-2xl
-    font-black
+    text-lg
+    font-extrabold
     tracking-tight
     text-blue-600
+
+    sm:text-xl
+
+    lg:text-2xl
     "
   >
     Rp {product.price.toLocaleString("id-ID")}
@@ -168,76 +178,67 @@ lg:text-2xl
 
 </div>
 
-        <div className="mt-2 flex gap-3">
+<div
+  className="
+  mt-5
+  grid
+  grid-cols-2
+  gap-2
+  "
+>
 
   <Link
     href={`/produk/${product.id}`}
     className="
-    group/detail
     flex
     h-10
-lg:h-12
-    flex-1
     items-center
     justify-center
-    gap-2
-    rounded-2xl
+    gap-1
+    rounded-xl
     border
     border-slate-200
     bg-white
+    text-xs
     font-semibold
     text-slate-700
     transition-all
-    duration-300
     hover:border-blue-600
     hover:text-blue-600
+
+    lg:h-11
+    lg:text-sm
     "
   >
 
-    <Eye
-      size={18}
-      className="transition group-hover/detail:scale-110"
-    />
+    <Eye size={16} />
 
     Detail
-
-    <ArrowRight
-      size={16}
-      className="
-      transition
-      group-hover/detail:translate-x-1
-      "
-    />
 
   </Link>
 
   <button
     onClick={() => onAddToCart(product)}
     className="
-    group/cart
     flex
-    h-12
-    flex-1
+    h-10
     items-center
     justify-center
-    gap-2
-    rounded-2xl
+    gap-1
+    rounded-xl
     bg-blue-600
+    text-xs
     font-semibold
     text-white
-    shadow-lg
     transition-all
-    duration-300
-    hover:-translate-y-0.5
     hover:bg-blue-700
-    hover:shadow-xl
+
+    lg:h-11
+    lg:text-sm
     "
   >
 
-    <ShoppingCart
-      size={18}
-      className="transition group-hover/cart:rotate-12"
-    />
+    <ShoppingCart size={16} />
 
     Add
 

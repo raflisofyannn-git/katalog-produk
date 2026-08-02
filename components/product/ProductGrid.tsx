@@ -100,7 +100,19 @@ export default function ProductGrid({
     >
       {/* Header */}
 
-      <div className="mb-14 flex items-end justify-between">
+      <div
+  className="
+  mb-10
+  flex
+  flex-col
+  gap-4
+
+  lg:mb-14
+  lg:flex-row
+  lg:items-end
+  lg:justify-between
+  "
+>
 
         <div>
 

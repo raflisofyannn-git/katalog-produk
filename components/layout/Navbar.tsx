@@ -88,69 +88,108 @@ export default function Navbar({
             : "bg-white/70 backdrop-blur-xl"
         }`}
       >
-        <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
+        <div
+  className="
+  mx-auto
+  flex
+  h-20
+  max-w-7xl
+  items-center
+  justify-between
+  px-4
+
+  sm:px-6
+  lg:h-24
+  "
+>
 
           {/* Logo */}
 
           <Link
-            href="/"
-            className="group flex items-center gap-4 transition duration-300 hover:scale-[1.02]"
-          >
-
-            {settings?.logo ? (
-
-              <Image
-              src={settings.logo}
-              alt={settings.storeName}
-              width={52}
-              height={52}
-              className="
-              rounded-full
-              object-cover
-              transition-all
-              duration-300
-              group-hover:scale-105
-              group-hover:-rotate-2
-              "
-            />
-
-            ) : (
-
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-2xl font-black text-white shadow-lg">
-                V
-              </div>
-
-            )}
-
-            <div>
-
-              <h1
+  href="/"
   className="
-  text-[32px]
-  font-extrabold
-  tracking-tight
-  leading-none
-  text-slate-900
+  flex
+  items-center
+  gap-3
+  transition
+  hover:opacity-90
   "
 >
-                {settings?.storeName || "VINA FINDS"}
-              </h1>
 
-              <p
-              className="
-              mt-1
-              text-[11px]
-              uppercase
-              tracking-[0.28em]
-              text-slate-500
-              "
-            >
-              Into The Blue || Sport Equipment
-            </p>
+  {settings?.logo ? (
 
-            </div>
+    <Image
+      src={settings.logo}
+      alt={settings.storeName}
+      width={54}
+      height={54}
+      className="
+      h-10
+      w-10
+      rounded-full
+      object-cover
 
-          </Link>
+      sm:h-12
+      sm:w-12
+
+      lg:h-14
+      lg:w-14
+      "
+    />
+
+  ) : (
+
+    <div
+      className="
+      flex
+      h-10
+      w-10
+      items-center
+      justify-center
+      rounded-full
+      bg-blue-600
+      text-white
+      font-bold
+      "
+    >
+      V
+    </div>
+
+  )}
+
+  <div>
+
+    <h1
+      className="
+      text-2xl
+      font-black
+      leading-none
+      text-slate-900
+
+      lg:text-[42px]
+      "
+    >
+      {settings?.storeName}
+    </h1>
+
+    <p
+      className="
+      hidden
+
+      sm:block
+
+      text-[11px]
+      uppercase
+      tracking-[0.35em]
+      text-slate-500
+      "
+    >
+      INTO THE BLUE │ SPORT EQUIPMENT
+    </p>
+
+  </div>
+
+</Link>
 
           {/* Desktop Menu */}
 
@@ -215,7 +254,7 @@ export default function Navbar({
             <div
               className="
               hidden
-              xl:flex
+            lg:flex
               items-center
               gap-3
               rounded-full
@@ -339,6 +378,47 @@ export default function Navbar({
           </div>
 
         </div>
+
+{/* Mobile Search */}
+
+<div className="border-t bg-white p-4 xl:hidden">
+
+  <div
+    className="
+    flex
+    items-center
+    gap-3
+    rounded-full
+    border
+    border-slate-200
+    bg-slate-50
+    px-4
+    py-3
+    transition
+    focus-within:border-blue-500
+    "
+  >
+
+    <Search
+      size={18}
+      className="text-slate-400"
+    />
+
+    <input
+      type="text"
+      placeholder="Cari produk..."
+      className="
+      w-full
+      bg-transparent
+      text-sm
+      outline-none
+      placeholder:text-slate-400
+      "
+    />
+
+  </div>
+
+</div>
 
         {/* Mobile Menu */}
 

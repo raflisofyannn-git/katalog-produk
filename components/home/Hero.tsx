@@ -77,7 +77,8 @@ if (!settings) {
         relative
         mx-auto
         flex
-        min-h-[690px]
+       min-h-[620px]
+lg:min-h-[690px]
         max-w-7xl
         items-center
         px-6
@@ -110,7 +111,9 @@ if (!settings) {
           <h1
             className="
             mt-8
-            text-6xl
+            text-4xl
+sm:text-5xl
+lg:text-6xl
             font-black
             leading-[1.05]
             tracking-tight
@@ -126,7 +129,9 @@ if (!settings) {
             className="
             mt-5
             max-w-xl
-            text-[34px]
+            text-2xl
+sm:text-3xl
+lg:text-[34px]
             font-extrabold
             leading-tight
             text-cyan-400
@@ -141,8 +146,10 @@ if (!settings) {
             className="
             mt-8
             max-w-xl
-            text-lg
-            leading-9
+            text-base
+            leading-7
+            lg:text-lg
+            lg:leading-9
             text-white/90
             "
           >
@@ -167,8 +174,10 @@ if (!settings) {
               gap-3
               rounded-2xl
               bg-blue-600
-              px-8
-              py-5
+              px-6
+              py-4
+              lg:px-8
+              lg:py-5
               font-bold
               text-white
               shadow-xl
@@ -217,28 +226,29 @@ if (!settings) {
           className="
           relative
           ml-auto
-          hidden
-          h-[690px]
-          w-[760px]
-          lg:block
+         hidden
+lg:block
+h-[620px]
+w-[700px]
+xl:h-[690px]
+xl:w-[760px]
           "
         >
 
           {/* Shadow Batu */}
 
           <div
-            className="
-            absolute
-            bottom-8
-            left-44
-            z-0
-            h-14
-            w-[500px]
-            rounded-full
-            bg-black/30
-            blur-3xl
-            "
-          />
+  className="
+  absolute
+  right-8
+  top-20
+  h-72
+  w-72
+  rounded-full
+  bg-cyan-400/20
+  blur-[120px]
+  "
+/>
 
           {/* Batu */}
 
